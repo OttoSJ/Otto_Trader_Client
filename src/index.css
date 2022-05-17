@@ -1,0 +1,233 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 120vh;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.car-details-image {
+  width: 100%;
+  height: 70%;
+  object-fit: cover;
+}
+
+.col-md-2 {
+  margin: 1rem;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+a:link {
+  text-decoration: none;
+  font-weight: 600;
+  color: rgb(65, 44, 44);
+}
+
+/* a:visited {
+  text-decoration: none;
+  font-weight: 600;
+  color: red;
+} */
+
+a:hover {
+  text-decoration: none;
+  font-weight: 600;
+  color: dodgerblue;
+}
+
+a {
+  text-decoration: none;
+  font-weight: 600;
+  color: rgb(65, 44, 44);
+}
+
+.mr-auto {
+  margin-left: auto;
+}
+
+.headings {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.container-centered {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.minus-margin {
+  margin: -0.1rem;
+}
+
+.container {
+  display: flex;
+  /* flex-direction: column; */
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comments-container {
+  width: 60%;
+  height: 70%;
+}
+
+.options-container {
+  width: 45rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  border: 2px solid grey;
+}
+
+.main-container {
+  /* border: 2px solid rgb(150, 25, 25); */
+  border: 2px solid rgb(37, 37, 128);
+  width: 95%;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.main-display-container {
+  /* border: 2px solid rgb(202, 138, 138); */
+  width: 80%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.main-picture,
+Link {
+  height: 70%;
+  object-fit: fill;
+  /* border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px; */
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.sellers-page-container {
+  width: 100vw;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  /* border: 2px solid grey; */
+}
+
+.sellers-main-message-container {
+  width: 100%;
+  height: 30%;
+}
+
+.sellers-card-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  border: 2px solid grey;
+  width: 80%;
+  height: 110%;
+}
+
+.styled-header {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-weight: bold;
+  font-size: 220%;
+}
+
+.select-box-size {
+  width: 6rem;
+}
+
+.search-bar {
+  width: 60vw;
+  margin-top: -2rem;
+  height: 2.5rem;
+  border: 2px solid rgb(37, 37, 128);
+  color: rgb(32, 32, 32);
+  background-color: rgb(224, 224, 224);
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+@media (min-width: 600px) {
+  .main-picture {
+    height: 30%;
+  }
+  .main-container {
+    width: 30%;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .main-display-container {
+    width: 50rem;
+    height: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .main-picture {
+    height: 10rem;
+    object-fit: cover;
+  }
+
+  .car-details-image {
+    width: 50rem;
+  }
+
+  .container-flex-row {
+    width: 50rem;
+  }
+
+  .search-bar {
+    width: 380%;
+    margin-bottom: 1rem;
+    margin-top: 0;
+  }
+
+  .styled-header {
+    font-size: 420%;
+  }
+
+  .minus-margin {
+    margin: 0.5rem;
+  }
+}
