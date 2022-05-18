@@ -5,10 +5,12 @@ import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import { useSelector, useDispatch } from 'react-redux'
 import { createCar, reset } from '../features/cars/carSlice'
+import { Modal, Button } from 'react-bootstrap'
 import Spinner from './Spinner'
 
 function CarRegistration() {
   const [loading, setLoading] = useState(true)
+  const [show, setShow] = useState(false)
 
   const [formData, setFromData] = useState({
     make: '',
@@ -105,6 +107,7 @@ function CarRegistration() {
     setTimeout(() => {
       navigate('/sellerdashboard')
     }, 2500)
+    console.log('It was clicked!')
   }
 
   const onChange = (e) => {
@@ -113,6 +116,9 @@ function CarRegistration() {
       [e.target.name]: e.target.value,
     }))
   }
+
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
 
   // if (loading) {
   //   return <Spinner />
@@ -127,7 +133,30 @@ function CarRegistration() {
             <FaCar className="mb-1" /> Register Vehilcle
             <p className="p-5">Please Register Your Vehicle!</p>
           </h1>
+
           <form onSubmit={onSubmit} className="row g-3 mt-3">
+            <Modal show={show} onHide={handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>Modal heading</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                Woohoo, you're reading this text in a modal!
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                  Close
+                </Button>
+                <Button
+                  variant="primary"
+                  type="submit"
+                  className="btn btn-dark col-8 m-3"
+                  // onClick={handleClose}
+                  onClick={onSubmit}
+                >
+                  Submit
+                </Button>
+              </Modal.Footer>
+            </Modal>
             <div className="col-6">
               <label htmlFor="make" className="form-label">
                 Make
@@ -404,9 +433,16 @@ function CarRegistration() {
             </div>
 
             <div className="col-12 mb-5 container">
-              <button type="submit" className="btn btn-dark col-8 m-3">
+              {/* <button type="submit" className="btn btn-dark col-8 m-3">
                 Submit
-              </button>
+              </button> */}
+              <Button
+                variant="primary"
+                className="btn btn-dark col-8 m-3"
+                onClick={handleShow}
+              >
+                Submit
+              </Button>
             </div>
           </form>
         </div>

@@ -17,22 +17,22 @@ function CarDetails() {
 
   const { allUsers } = useSelector((state) => state.allUsers)
 
-  const userInfo = JSON.parse(localStorage.getItem('user'))
-  const token = userInfo.token
+  // const userInfo = JSON.parse(localStorage.getItem('user'))
+  // const token = userInfo.token
 
-  const requestOptions = {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-  }
+  // const requestOptions = {
+  //   method: 'GET',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //     Authorization: `Bearer ${token}`,
+  //   },
+  // }
 
   const API_URL = `https://otto-trader-api.herokuapp.com/api/inventory/cardetails/${params.id}`
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(API_URL, requestOptions)
+      const response = await fetch(API_URL)
       const resData = await response.json()
 
       setCarDetail(resData)
