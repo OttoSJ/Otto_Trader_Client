@@ -1,14 +1,28 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Form } from 'react-bootstrap'
+import { Button, Form, Modal } from 'react-bootstrap'
 import { useParams, useNavigate } from 'react-router-dom'
 import UserForm from '../components/sub_components/UserForm'
 import { FaUser } from 'react-icons/fa'
 import { useDispatch } from 'react-redux'
 import { logout, reset } from '../features/auth/authSlice'
+import ModalComponent from './sub_components/Modal'
+import {
+  confirmEditUserMessage,
+  confirmHeaderMessage,
+  confirmDeleteUserMessage,
+  warningHeaderMessage,
+  confirmedDeleteMessage,
+  confirmedEditMessage,
+} from '../utilities.js/variables'
 
 function EditUserDetails() {
   const [userInformation, setUserInformation] = useState('')
   const [formData, setFormData] = useState({})
+  const [modalBodyMessage, setModalBodyMessage] = useState('')
+  const [modalHeaderMessage, setModalHeaderMessage] = useState('')
+  const [modalMessageConfirmed, setModalMessageConfirmed] = useState(false)
+  const [cancel, setCancel] = useState(false)
+  const [show, setShow] = useState(false)
   const params = useParams()
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -61,8 +75,13 @@ function EditUserDetails() {
         requestUpdateOptions
       )
     }
+
+    setModalMessageConfirmed(true)
+    setModalBodyMessage(confirmedEditMessage)
     fetchData()
-    navigate('/sellerdashboard')
+    setTimeout(() => {
+      navigate('/sellerdashboard')
+    }, 2500)
   }
 
   const onChange = (e) => {
@@ -71,7 +90,7 @@ function EditUserDetails() {
       [e.target.name]: e.target.value,
     }))
   }
-  console.log(token)
+
   const handleDelete = () => {
     const fetchData = async () => {
       const resDeleteInventory = await fetch(
@@ -83,11 +102,32 @@ function EditUserDetails() {
         requestDeleteUserOptions
       )
     }
-    fetchData()
 
-    dispatch(logout())
-    dispatch(reset(navigate('/')))
+    setModalMessageConfirmed(true)
+    setModalBodyMessage(confirmedDeleteMessage)
+    fetchData()
+    setTimeout(() => {
+      dispatch(reset(navigate('/')))
+      dispatch(logout())
+    }, 2500)
   }
+
+  const handleOnSubmit = () => {
+    setModalMessageConfirmed(false)
+    setShow(true)
+    setCancel(false)
+    setModalBodyMessage(confirmEditUserMessage)
+    setModalHeaderMessage(confirmHeaderMessage)
+  }
+
+  const handleCancel = () => {
+    setShow(true)
+    setCancel(true)
+    setModalBodyMessage(confirmDeleteUserMessage)
+    setModalHeaderMessage(warningHeaderMessage)
+  }
+
+  const handleClose = () => setShow(false)
 
   useEffect(() => {
     if (!userInfo) {
@@ -100,7 +140,8 @@ function EditUserDetails() {
       setFormData(resData)
     }
     fetchData()
-  }, [API_URL_GET_USER_INFO, navigate])
+    setCancel(false)
+  }, [API_URL_GET_USER_INFO, navigate, setCancel])
 
   return (
     <>
@@ -109,16 +150,29 @@ function EditUserDetails() {
         {userInformation.lastname}
         <p className="p-5">Edit Your Information Below</p>
       </h1>
+      <ModalComponent
+        handleClose={handleClose}
+        handleDelete={handleDelete}
+        onSubmit={onSubmit}
+        show={show}
+        cancel={cancel}
+        modalBodyMessage={modalBodyMessage}
+        modalHeaderMessage={modalHeaderMessage}
+        modalMessageConfirmed={modalMessageConfirmed}
+      />
 
       <Form onSubmit={onSubmit} className="container">
         <UserForm onChange={onChange} userInformation={userInformation} />
         <Button
-          onClick={() => handleDelete()}
-          className="btn btn-danger col-5 mt-5 m-3"
+          onClick={handleCancel}
+          className="btn btn-danger col-5 mt-5 m-3  mb-5"
         >
           Delete
         </Button>
-        <Button type="submit" className="btn btn-dark col-5 mt-5 m-3">
+        <Button
+          onClick={handleOnSubmit}
+          className="btn btn-dark col-5 mt-5 m-3 mb-5"
+        >
           Submit
         </Button>
       </Form>

@@ -9,7 +9,15 @@ function CarCard({ filteredCars, handleCarDetails }) {
         onClick={(e) => handleCarDetails(e, filteredCars)}
         className="main-container mt-3 mb-2 cursor"
       >
-        <img className="main-picture" src={filteredCars.image} alt="" />
+        <img
+          className="main-picture"
+          src={
+            !filteredCars.image
+              ? 'https://ouikar.com/pub/media/catalog/product/placeholder/default/image_not_available.png'
+              : filteredCars.image
+          }
+          alt=""
+        />
         <Link
           className="sellers-main-message-container"
           to={`/cardetails/${filteredCars._id}`}

@@ -70,7 +70,6 @@ function Registration() {
         zip,
       }
 
-      // console.log(userData)
       dispatch(register(userData))
     }
   }

@@ -74,6 +74,8 @@ function CarDetails() {
     transmission,
   } = carDetail
 
+  console.log(image)
+
   if (!carDetail) {
     return <Spinner />
   }
@@ -114,7 +116,15 @@ function CarDetails() {
       return (
         <div className="container-centered">
           <div className=" container-centered-start">
-            <img className="car-details-image mt-3" src={image} alt="" />
+            <img
+              className="car-details-image mt-3"
+              src={
+                !image
+                  ? 'https://ouikar.com/pub/media/catalog/product/placeholder/default/image_not_available.png'
+                  : image
+              }
+              alt=""
+            />
           </div>
           <section>
             <h1 className="mt-5 headings">

@@ -5,13 +5,23 @@ import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import { useSelector, useDispatch } from 'react-redux'
 import { createCar, reset } from '../features/cars/carSlice'
-import { Modal, Button } from 'react-bootstrap'
+import { Button, Form } from 'react-bootstrap'
+import ModalComponent from './sub_components/Modal'
 import Spinner from './Spinner'
+import {
+  confirmAddVehicleMessage,
+  confirmNewCarHeaderMessage,
+  confirmedNewCarMessage,
+} from '../utilities.js/variables'
 
 function CarRegistration() {
   const [loading, setLoading] = useState(true)
   const [show, setShow] = useState(false)
-
+  const [modalMessageConfirmed, setModalMessageConfirmed] = useState(false)
+  const [modalBodyMessage, setModalBodyMessage] = useState('')
+  const [modalHeaderMessage, setModalHeaderMessage] = useState('')
+  const [cancel] = useState(false)
+  const userInfo = JSON.parse(localStorage.getItem('user'))
   const [formData, setFromData] = useState({
     make: '',
     model: '',
@@ -69,17 +79,21 @@ function CarRegistration() {
     if (isError) {
       toast.error(message)
     }
-    // THIS SETTIMEOUT WILL CAUSE A ERROR IN CONSOLE, NEED TO FIND A BETTER SOLUTION
-    // setTimeout(() => {
-    //   setLoading(false)
-    // }, 2000)
 
     dispatch(reset())
   }, [car, isError, isSuccess, message, navigate, dispatch, loading])
 
+  const handleOnSubmit = () => {
+    // handleShow()
+    // setCancel(false)
+    setShow(true)
+    setModalBodyMessage(confirmAddVehicleMessage)
+    setModalHeaderMessage(confirmNewCarHeaderMessage)
+  }
+
   const onSubmit = (e) => {
     e.preventDefault()
-
+    setModalMessageConfirmed(true)
     const carData = {
       make,
       model,
@@ -102,12 +116,12 @@ function CarRegistration() {
       auxport,
       amfm,
     }
-    console.log(carData)
+
+    setModalBodyMessage(confirmedNewCarMessage)
     dispatch(createCar(carData))
     setTimeout(() => {
       navigate('/sellerdashboard')
     }, 2500)
-    console.log('It was clicked!')
   }
 
   const onChange = (e) => {
@@ -118,7 +132,6 @@ function CarRegistration() {
   }
 
   const handleClose = () => setShow(false)
-  const handleShow = () => setShow(true)
 
   // if (loading) {
   //   return <Spinner />
@@ -134,29 +147,17 @@ function CarRegistration() {
             <p className="p-5">Please Register Your Vehicle!</p>
           </h1>
 
-          <form onSubmit={onSubmit} className="row g-3 mt-3">
-            <Modal show={show} onHide={handleClose}>
-              <Modal.Header closeButton>
-                <Modal.Title>Modal heading</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                Woohoo, you're reading this text in a modal!
-              </Modal.Body>
-              <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>
-                  Close
-                </Button>
-                <Button
-                  variant="primary"
-                  type="submit"
-                  className="btn btn-dark col-8 m-3"
-                  // onClick={handleClose}
-                  onClick={onSubmit}
-                >
-                  Submit
-                </Button>
-              </Modal.Footer>
-            </Modal>
+          <ModalComponent
+            handleClose={handleClose}
+            onSubmit={onSubmit}
+            show={show}
+            cancel={cancel}
+            modalBodyMessage={modalBodyMessage}
+            modalHeaderMessage={modalHeaderMessage}
+            modalMessageConfirmed={modalMessageConfirmed}
+          />
+
+          <Form onSubmit={onSubmit} className="row g-3 mt-3">
             <div className="col-6">
               <label htmlFor="make" className="form-label">
                 Make
@@ -433,18 +434,15 @@ function CarRegistration() {
             </div>
 
             <div className="col-12 mb-5 container">
-              {/* <button type="submit" className="btn btn-dark col-8 m-3">
-                Submit
-              </button> */}
               <Button
                 variant="primary"
                 className="btn btn-dark col-8 m-3"
-                onClick={handleShow}
+                onClick={handleOnSubmit}
               >
                 Submit
               </Button>
             </div>
-          </form>
+          </Form>
         </div>
       </div>
     </div>

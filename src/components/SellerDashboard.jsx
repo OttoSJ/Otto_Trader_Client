@@ -53,6 +53,7 @@ function SellerDashboard() {
     navigate(`/editcardetails/${car._id}`)
   }
   console.log(sellersInventory)
+  console.log(sellersName[0])
 
   return (
     <>
@@ -76,7 +77,11 @@ function SellerDashboard() {
                 <img
                   onClick={(e) => handleCarDetails(e, car)}
                   className="main-picture"
-                  src={car.image}
+                  src={
+                    !car.image
+                      ? 'https://ouikar.com/pub/media/catalog/product/placeholder/default/image_not_available.png'
+                      : car.image
+                  }
                   alt=""
                 />
                 <div className="sellers-main-message-container">
