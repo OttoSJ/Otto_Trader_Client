@@ -146,7 +146,7 @@ function EditUserDetails() {
   return (
     <>
       <h1 className="mt-5 headings">
-        <FaUser className="mb-3 mx-2" /> Hello, {userInformation.firstname}{' '}
+        <FaUser className="mb-3 mx-2" /> Hello, {userInformation.prefix}{' '}
         {userInformation.lastname}
         <p className="p-5">Edit Your Information Below</p>
       </h1>

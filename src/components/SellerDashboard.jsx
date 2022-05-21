@@ -43,7 +43,7 @@ function SellerDashboard() {
       ])
       setModalBodyMessage(addNewFieldMsg)
       setModalHeaderMessage(addNewFieldHeader)
-      resData.perfix ? setShow(true) : setShow(false)
+      !resData.prefix ? setShow(true) : setShow(false)
     }
     fetchData()
     if (!user) {

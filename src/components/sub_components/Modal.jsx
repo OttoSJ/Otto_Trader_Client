@@ -1,17 +1,44 @@
 import { Button, Modal } from 'react-bootstrap'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function ModalComponent({
   handleClose,
   onSubmit,
   show,
   cancel,
-  sellersName,
   handleDelete,
   modalBodyMessage,
   modalHeaderMessage,
   modalMessageConfirmed,
 }) {
-  // console.log(sellersName)
+  const [sellersName, setSellersName] = useState('')
+  const navigate = useNavigate()
+  const userInfo = JSON.parse(localStorage.getItem('user'))
+  const token = userInfo.token
+
+  const API_URL_GET_USERS_INVENTORY = `https://otto-trader-api.herokuapp.com/api/users/inventory/${userInfo._id}`
+
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  }
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(API_URL_GET_USERS_INVENTORY, requestOptions)
+      const resData = await response.json()
+      setSellersName({ prefix: resData.prefix })
+    }
+
+    fetchData()
+    if (!token) {
+      navigate('/login')
+    }
+  }, [API_URL_GET_USERS_INVENTORY, navigate])
+
   return (
     <>
       <Modal show={show} onHide={handleClose}>
@@ -28,7 +55,7 @@ function ModalComponent({
                 className="px-4"
                 onClick={handleClose}
               >
-                {!sellersName[0] ? 'No' : 'Later'}
+                {!sellersName.prefix ? 'No' : 'Later'}
               </Button>
               {!cancel ? (
                 <Button
@@ -36,7 +63,7 @@ function ModalComponent({
                   onClick={onSubmit}
                   className="btn btn-dark col-8  m-3"
                 >
-                  {!sellersName[0]
+                  {!sellersName.prefix
                     ? 'Yes, Please Submit'
                     : 'Update Profile Now'}
                 </Button>
