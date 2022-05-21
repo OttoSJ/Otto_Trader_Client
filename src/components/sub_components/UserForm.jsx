@@ -5,7 +5,7 @@ function UserForm({ onChange, userInformation }) {
   return (
     <Form.Group className="row g-3 mt-3">
       <Row>
-        <Col className="mt-5" md={6}>
+        <Col className="mt-5" md={5}>
           <Form.Label htmlFor="firstname" className="form-label">
             First Name
           </Form.Label>
@@ -20,7 +20,7 @@ function UserForm({ onChange, userInformation }) {
             onChange={onChange}
           />
         </Col>
-        <Col className="mt-5" md={6}>
+        <Col className="mt-5" md={5}>
           <Form.Label htmlFor="lastname" className="form-label">
             Last Name
           </Form.Label>
@@ -33,6 +33,25 @@ function UserForm({ onChange, userInformation }) {
             placeholder={!userInformation ? 'Last Name' : null}
             onChange={onChange}
           />
+        </Col>
+        <Col>
+          <Form.Label className="mt-5" md={2}>
+            Prefix
+          </Form.Label>
+          <Form.Select
+            type="text"
+            className="form-control"
+            name="prefix"
+            id="prefix"
+            onChange={onChange}
+          >
+            <option value="Choose">
+              {' '}
+              {userInformation ? userInformation.prefix : 'Choose...'}{' '}
+            </option>
+            <option value="Mr">Mr</option>
+            <option value="Mrs">Mrs</option>
+          </Form.Select>
         </Col>
       </Row>
       {!userInformation ? (

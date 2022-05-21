@@ -1,4 +1,3 @@
-// import { useState } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 
 function ModalComponent({
@@ -6,11 +5,13 @@ function ModalComponent({
   onSubmit,
   show,
   cancel,
+  sellersName,
   handleDelete,
   modalBodyMessage,
   modalHeaderMessage,
   modalMessageConfirmed,
 }) {
+  // console.log(sellersName)
   return (
     <>
       <Modal show={show} onHide={handleClose}>
@@ -27,7 +28,7 @@ function ModalComponent({
                 className="px-4"
                 onClick={handleClose}
               >
-                No
+                {!sellersName[0] ? 'No' : 'Later'}
               </Button>
               {!cancel ? (
                 <Button
@@ -35,7 +36,9 @@ function ModalComponent({
                   onClick={onSubmit}
                   className="btn btn-dark col-8  m-3"
                 >
-                  Yes, Please Submit
+                  {!sellersName[0]
+                    ? 'Yes, Please Submit'
+                    : 'Update Profile Now'}
                 </Button>
               ) : (
                 <Button

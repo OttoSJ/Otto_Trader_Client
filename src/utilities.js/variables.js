@@ -42,9 +42,13 @@ const confirmNewCarHeaderMessage = 'Please Confirm'
 const confirmedNewCarMessage =
   'This vehilce has been added to your inventory. It may take up to 5 minutes to show on your dashboard.'
 
+// ALERT MESSAGES
+const addNewFieldMsg =
+  'A New Field Has Been Added To Your Profile. Please Update Your Profile At This Time!'
+
+const addNewFieldHeader = 'PLEASE UPDATE YOUR PROFILE!'
+
 module.exports = {
-  // getToken,
-  // requestOptions,
   confirmEditUserMessage,
   confirmHeaderMessage,
   confirmDeleteUserMessage,
@@ -60,4 +64,6 @@ module.exports = {
   confirmAddVehicleMessage,
   confirmNewCarHeaderMessage,
   confirmedNewCarMessage,
+  addNewFieldMsg,
+  addNewFieldHeader,
 }

@@ -1,15 +1,21 @@
-import { Button } from 'react-bootstrap'
+import { Button, Modal } from 'react-bootstrap'
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { numberWithCommas } from '../utilities.js/functions'
 import { upperCase } from '../utilities.js/functions'
+import ModalComponent from './sub_components/Modal'
 import Spinner from './Spinner'
+import { addNewFieldMsg, addNewFieldHeader } from '../utilities.js/variables'
 
 function SellerDashboard() {
   const { user } = useSelector((state) => state.auth)
   const [sellersInventory, setSellersInventory] = useState('')
   const [sellersName, setSellersName] = useState('')
+  const [show, setShow] = useState(false)
+  const [modalBodyMessage, setModalBodyMessage] = useState('')
+  const [modalHeaderMessage, setModalHeaderMessage] = useState('')
+  const [cancel] = useState(false)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const userInfo = JSON.parse(localStorage.getItem('user'))
@@ -31,9 +37,13 @@ function SellerDashboard() {
       const resData = await response.json()
       setSellersInventory(resData.vehicleinventory)
       setSellersName([
+        { prefix: resData.prefix },
         { firstname: resData.firstname },
         { lastname: resData.lastname },
       ])
+      setModalBodyMessage(addNewFieldMsg)
+      setModalHeaderMessage(addNewFieldHeader)
+      resData.perfix ? setShow(true) : setShow(false)
     }
     fetchData()
     if (!user) {
@@ -52,8 +62,16 @@ function SellerDashboard() {
 
     navigate(`/editcardetails/${car._id}`)
   }
-  console.log(sellersInventory)
-  console.log(sellersName[0])
+
+  const onSubmit = () => {
+    navigate(`/edituserdetails/${userInfo._id}`)
+    console.log('onSubmit was clicked!')
+  }
+
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
+
+  // console.log(sellersName[0].prefix)
 
   return (
     <>
@@ -64,11 +82,22 @@ function SellerDashboard() {
             Welcome Back{' '}
             {sellersName ? (
               <>
-                {sellersName[0].firstname} {sellersName[1].lastname}
+                {`${sellersName[0].prefix}
+                ${sellersName[2].lastname}`}
               </>
             ) : null}
           </h3>
         </div>
+
+        <ModalComponent
+          show={show}
+          handleClose={handleClose}
+          handleShow={handleShow}
+          onSubmit={onSubmit}
+          modalBodyMessage={modalBodyMessage}
+          modalHeaderMessage={modalHeaderMessage}
+          sellersName={sellersName}
+        />
 
         <div className="main-display-container">
           {sellersInventory.length > 0 ? (
