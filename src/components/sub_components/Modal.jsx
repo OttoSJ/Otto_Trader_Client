@@ -52,7 +52,7 @@ function ModalComponent({
             <Modal.Footer>
               <Button
                 variant="secondary"
-                className="px-4"
+                className="px-3"
                 onClick={handleClose}
               >
                 {!sellersName.prefix ? 'No' : 'Later'}
@@ -61,7 +61,7 @@ function ModalComponent({
                 <Button
                   variant="primary"
                   onClick={onSubmit}
-                  className="btn btn-dark col-8  m-3"
+                  className="btn btn-dark col-8  m-2"
                 >
                   {!sellersName.prefix
                     ? 'Yes, Please Submit'
