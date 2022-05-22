@@ -15,6 +15,7 @@ import { getAllUsers } from './features/users/usersSlice'
 import { GlobalContext } from './utilities.js/GlobalContext'
 import EditUserDetails from './components/EditUserDetails'
 import { URL } from './utilities.js/functions'
+import ErrorPage from './components/ErrorPage'
 
 function App() {
   const [data, setData] = useState([])
@@ -78,6 +79,7 @@ function App() {
               path="/edituserdetails/:userId"
               element={<EditUserDetails HTTP={HTTP} />}
             />
+            <Route path="*" element={<ErrorPage />} />
           </Routes>
         </GlobalContext.Provider>
       </Router>

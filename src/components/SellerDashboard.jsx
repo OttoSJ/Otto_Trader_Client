@@ -19,7 +19,7 @@ function SellerDashboard({ HTTP }) {
   const navigate = useNavigate()
   const userInfo = JSON.parse(localStorage.getItem('user'))
   const token = userInfo.token
-
+  console.log(userInfo)
   const API_URL_GET_USERS_INVENTORY = `${HTTP}/api/users/inventory/${userInfo._id}`
 
   const requestOptions = {
