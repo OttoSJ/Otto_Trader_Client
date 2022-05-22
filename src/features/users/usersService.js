@@ -1,6 +1,8 @@
 import axios from 'axios'
+import { URL } from '../../utilities.js/functions'
 
-const API_URL = 'https://otto-trader-api.herokuapp.com/api/users/'
+const HTTP = URL
+const API_URL = `${HTTP}/api/users/`
 
 const getAllUsers = async () => {
   const response = await axios.get(API_URL)

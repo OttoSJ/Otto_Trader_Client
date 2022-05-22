@@ -6,6 +6,7 @@ import Pagination from './Pagintation'
 import CarCard from './sub_components/CarCard'
 import { getOneCarById } from '../features/carDetails/carDetailsSlice'
 import Spinner from './Spinner'
+import { URL } from '../utilities.js/functions'
 
 function HomePage({ data }) {
   // const [carDataLength, setCarDataLength] = useState(9)
@@ -31,7 +32,7 @@ function HomePage({ data }) {
     dispatch(getOneCarById(car._id))
 
     const fetchData = async () => {
-      const API_URL = `https://otto-trader-api.herokuapp.com/api/inventory/cardetails/${car._id}`
+      const API_URL = `${URL}/api/inventory/cardetails/${car._id}`
       const response = await fetch(API_URL)
       const resData = await response.json()
 

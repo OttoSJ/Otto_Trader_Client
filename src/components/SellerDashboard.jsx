@@ -8,7 +8,7 @@ import ModalComponent from './sub_components/Modal'
 import Spinner from './Spinner'
 import { addNewFieldMsg, addNewFieldHeader } from '../utilities.js/variables'
 
-function SellerDashboard() {
+function SellerDashboard({ HTTP }) {
   const { user } = useSelector((state) => state.auth)
   const [sellersInventory, setSellersInventory] = useState('')
   const [sellersName, setSellersName] = useState('')
@@ -21,7 +21,7 @@ function SellerDashboard() {
   const userInfo = JSON.parse(localStorage.getItem('user'))
   const token = userInfo.token
 
-  const API_URL_GET_USERS_INVENTORY = `https://otto-trader-api.herokuapp.com/api/users/inventory/${userInfo._id}`
+  const API_URL_GET_USERS_INVENTORY = `${HTTP}/api/users/inventory/${userInfo._id}`
 
   const requestOptions = {
     method: 'GET',

@@ -7,10 +7,6 @@ export function upperCase(word) {
   return upper
 }
 
-export function URL() {
-  const environment = false
-  if (environment) return 'local'
-  else return 'not local'
-}
+// export const URL = 'https://otto-trader-api.herokuapp.com'
 
-// console.log(URL())
+export const URL = 'http://localhost:8030'

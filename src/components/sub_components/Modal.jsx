@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 function ModalComponent({
+  HTTP,
   handleClose,
   onSubmit,
   show,
@@ -17,7 +18,7 @@ function ModalComponent({
   const userInfo = JSON.parse(localStorage.getItem('user'))
   const token = userInfo.token
 
-  const API_URL_GET_USERS_INVENTORY = `https://otto-trader-api.herokuapp.com/api/users/inventory/${userInfo._id}`
+  const API_URL_GET_USERS_INVENTORY = `${HTTP}/api/users/inventory/${userInfo._id}`
 
   const requestOptions = {
     method: 'GET',

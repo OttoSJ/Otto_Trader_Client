@@ -1,6 +1,8 @@
 import axios from 'axios'
+import { URL } from '../../utilities.js/functions'
 
-const API_URL = 'https://otto-trader-api.herokuapp.com/api/inventory/'
+const HTTP = URL
+const API_URL = `${HTTP}/api/inventory/`
 
 const createCar = async (carData, token) => {
   const config = {
@@ -11,8 +13,7 @@ const createCar = async (carData, token) => {
 
   const response = await axios.post(API_URL, carData, config)
 
- 
-  const API_URL_UPDATE_USER = `https://otto-trader-api.herokuapp.com/api/users/update-user-inventory/${response.data.user}`
+  const API_URL_UPDATE_USER = `${HTTP}/api/users/update-user-inventory/${response.data.user}`
 
   const carId = { vehicleinventory: response.data._id }
 

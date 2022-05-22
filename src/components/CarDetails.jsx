@@ -9,7 +9,7 @@ import { getOneCarById } from '../features/carDetails/carDetailsSlice'
 import Spinner from './Spinner'
 import { GlobalContext } from '../utilities.js/GlobalContext'
 
-function CarDetails() {
+function CarDetails({ HTTP }) {
   const [carDetail, setCarDetail] = useState('')
   const params = useParams()
   const formData = useContext(GlobalContext)
@@ -17,18 +17,7 @@ function CarDetails() {
 
   const { allUsers } = useSelector((state) => state.allUsers)
 
-  // const userInfo = JSON.parse(localStorage.getItem('user'))
-  // const token = userInfo.token
-
-  // const requestOptions = {
-  //   method: 'GET',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     Authorization: `Bearer ${token}`,
-  //   },
-  // }
-
-  const API_URL = `https://otto-trader-api.herokuapp.com/api/inventory/cardetails/${params.id}`
+  const API_URL = `${HTTP}/api/inventory/cardetails/${params.id}`
 
   useEffect(() => {
     const fetchData = async () => {
@@ -73,8 +62,6 @@ function CarDetails() {
     sunroof,
     transmission,
   } = carDetail
-
-  console.log(image)
 
   if (!carDetail) {
     return <Spinner />

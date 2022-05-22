@@ -14,13 +14,15 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { getAllUsers } from './features/users/usersSlice'
 import { GlobalContext } from './utilities.js/GlobalContext'
 import EditUserDetails from './components/EditUserDetails'
+import { URL } from './utilities.js/functions'
 
 function App() {
   const [data, setData] = useState([])
   const [formData, setFormData] = useState('')
   const dispatch = useDispatch()
+  const [HTTP] = useState(URL)
 
-  const API_URL_INVENTORY = `https://otto-trader-api.herokuapp.com/api/inventory/`
+  const API_URL_INVENTORY = `${HTTP}/api/inventory/`
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,22 +47,36 @@ function App() {
     <>
       <Router>
         <Navbar />
-        <GlobalContext.Provider value={formData}>
+        <GlobalContext.Provider value={formData} HTTP={HTTP}>
           <Routes>
             <Route />
-            <Route path="/" element={<HomePage data={data} />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/registration" element={<Registration />} />
-            <Route path="/sellerdashboard" element={<SellerDashboard />} />
-            <Route path="/carregistration" element={<CarRegistration />} />
-            <Route path="/cardetails/:id" element={<CarDetails />} />
+            <Route path="/" element={<HomePage data={data} HTTP={HTTP} />} />
+            <Route path="/login" element={<Login HTTP={HTTP} />} />
+            <Route
+              path="/registration"
+              element={<Registration HTTP={HTTP} />}
+            />
+            <Route
+              path="/sellerdashboard"
+              element={<SellerDashboard HTTP={HTTP} />}
+            />
+            <Route
+              path="/carregistration"
+              element={<CarRegistration HTTP={HTTP} />}
+            />
+            <Route
+              path="/cardetails/:id"
+              element={<CarDetails HTTP={HTTP} />}
+            />
             <Route
               path="/editcardetails/:id"
-              element={<EditCarDetails handleFormData={handleFormData} />}
+              element={
+                <EditCarDetails handleFormData={handleFormData} HTTP={HTTP} />
+              }
             />
             <Route
               path="/edituserdetails/:userId"
-              element={<EditUserDetails />}
+              element={<EditUserDetails HTTP={HTTP} />}
             />
           </Routes>
         </GlobalContext.Provider>
