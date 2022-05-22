@@ -55,6 +55,10 @@ function HomePage({ data }) {
   if (loading) {
     return <Spinner />
   }
+  const newInvntory = data.filter((car) => {
+    return car.listVehicle === true
+  })
+  console.log(newInvntory)
 
   return (
     <>

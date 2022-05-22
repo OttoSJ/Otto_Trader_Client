@@ -44,6 +44,7 @@ function CarRegistration({ HTTP }) {
     satradio: '',
     auxport: '',
     amfm: '',
+    listVehicle: '',
   })
 
   const {
@@ -67,6 +68,7 @@ function CarRegistration({ HTTP }) {
     satradio,
     auxport,
     amfm,
+    listVehicle,
   } = formData
 
   const navigate = useNavigate()

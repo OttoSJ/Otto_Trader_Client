@@ -25,6 +25,7 @@ function CarForm({ onChange, carDetails }) {
     satradio,
     auxport,
     amfm,
+    listVehicle,
   } = carDetails
 
   return (
@@ -168,10 +169,7 @@ function CarForm({ onChange, carDetails }) {
         />
       </div>
 
-      <div
-        className="col-12
-"
-      >
+      <div className="col-12">
         <label htmlFor="image" className="form-label ">
           Image
         </label>
@@ -183,6 +181,22 @@ function CarForm({ onChange, carDetails }) {
           id="image"
           onChange={onChange}
         />
+      </div>
+      <div className="col-6">
+        <label htmlFor="listVehicle" className="form-label">
+          List Vehicle
+        </label>
+        <select
+          id="listVehicle"
+          name="listVehicle"
+          className="form-select select-box-size"
+          onChange={onChange}
+          defaultValue={listVehicle}
+        >
+          <option value="Choose"> {listVehicle ? 'Yes' : 'No'} </option>
+          <option value={true}>Yes </option>
+          <option value={false}>No </option>
+        </select>
       </div>
 
       <div className="headings">

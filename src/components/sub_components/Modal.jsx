@@ -34,7 +34,6 @@ function ModalComponent({
       const resData = await response.json()
 
       setSellersName({ prefix: resData.prefix })
-      console.log(sellersName)
     }
     fetchData()
     if (!token) {
@@ -74,7 +73,7 @@ function ModalComponent({
                 <Button
                   variant="primary"
                   onClick={handleDelete}
-                  className="btn btn-dark col-8  m-3"
+                  className="btn btn-dark col-8  m-1"
                 >
                   Yes, Please Delete
                 </Button>

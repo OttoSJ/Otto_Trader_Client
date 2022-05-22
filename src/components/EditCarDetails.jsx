@@ -44,6 +44,7 @@ function EditCarDetails({ handleFormData, HTTP }) {
     satradio,
     auxport,
     amfm,
+    listVehicle,
   } = carDetails
 
   let [formData, setFormData] = useState({
@@ -68,6 +69,7 @@ function EditCarDetails({ handleFormData, HTTP }) {
     satradio: satradio,
     auxport: auxport,
     amfm: amfm,
+    listVehicle: listVehicle,
   })
   const [show, setShow] = useState(false)
   const [modalBodyMessage, setModalBodyMessage] = useState('')

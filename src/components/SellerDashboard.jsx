@@ -19,7 +19,7 @@ function SellerDashboard({ HTTP }) {
   const navigate = useNavigate()
   const userInfo = JSON.parse(localStorage.getItem('user'))
   const token = userInfo.token
-  console.log(userInfo)
+
   const API_URL_GET_USERS_INVENTORY = `${HTTP}/api/users/inventory/${userInfo._id}`
 
   const requestOptions = {
@@ -34,6 +34,7 @@ function SellerDashboard({ HTTP }) {
     const fetchData = async () => {
       const response = await fetch(API_URL_GET_USERS_INVENTORY, requestOptions)
       const resData = await response.json()
+      console.log(resData.vehicleinventory)
       setSellersInventory(resData.vehicleinventory)
       setSellersName([
         { prefix: resData.prefix },
@@ -45,6 +46,7 @@ function SellerDashboard({ HTTP }) {
       !resData.prefix ? setShow(true) : setShow(false)
     }
     fetchData()
+    console.log(userInfo)
     if (!user) {
       navigate('/login')
     }
@@ -64,7 +66,6 @@ function SellerDashboard({ HTTP }) {
 
   const onSubmit = () => {
     navigate(`/edituserdetails/${userInfo._id}`)
-    console.log('onSubmit was clicked!')
   }
 
   const handleClose = () => setShow(false)
