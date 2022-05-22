@@ -16,7 +16,6 @@ function SellerDashboard({ HTTP }) {
   const [modalBodyMessage, setModalBodyMessage] = useState('')
   const [modalHeaderMessage, setModalHeaderMessage] = useState('')
   const [cancel] = useState(false)
-  const dispatch = useDispatch()
   const navigate = useNavigate()
   const userInfo = JSON.parse(localStorage.getItem('user'))
   const token = userInfo.token
@@ -49,7 +48,7 @@ function SellerDashboard({ HTTP }) {
     if (!user) {
       navigate('/login')
     }
-  }, [user, navigate, dispatch, API_URL_GET_USERS_INVENTORY])
+  }, [user, navigate, API_URL_GET_USERS_INVENTORY])
 
   const handleCarDetails = (e, car) => {
     e.preventDefault()
