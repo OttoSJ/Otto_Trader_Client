@@ -178,6 +178,7 @@ function EditCarDetails({ handleFormData, HTTP }) {
             handleClose={handleClose}
             onSubmit={onSubmit}
             show={show}
+            HTTP={HTTP}
             cancel={cancel}
             handleDelete={handleDelete}
             modalBodyMessage={modalBodyMessage}

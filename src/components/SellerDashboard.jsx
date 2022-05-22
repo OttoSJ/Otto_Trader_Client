@@ -90,6 +90,7 @@ function SellerDashboard({ HTTP }) {
 
         <ModalComponent
           show={show}
+          HTTP={HTTP}
           handleClose={handleClose}
           handleShow={handleShow}
           onSubmit={onSubmit}

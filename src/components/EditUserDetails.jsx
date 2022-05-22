@@ -155,6 +155,7 @@ function EditUserDetails({ HTTP }) {
         handleDelete={handleDelete}
         onSubmit={onSubmit}
         show={show}
+        HTTP={HTTP}
         cancel={cancel}
         modalBodyMessage={modalBodyMessage}
         modalHeaderMessage={modalHeaderMessage}

@@ -15,7 +15,7 @@ import {
 } from '../utilities.js/variables'
 import CarForm from './sub_components/CarForm'
 
-function CarRegistration() {
+function CarRegistration({ HTTP }) {
   const [loading, setLoading] = useState(true)
   const [show, setShow] = useState(false)
   const [modalMessageConfirmed, setModalMessageConfirmed] = useState(false)
@@ -150,6 +150,7 @@ function CarRegistration() {
             handleClose={handleClose}
             onSubmit={onSubmit}
             show={show}
+            HTTP={HTTP}
             cancel={cancel}
             modalBodyMessage={modalBodyMessage}
             modalHeaderMessage={modalHeaderMessage}
