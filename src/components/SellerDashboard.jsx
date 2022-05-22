@@ -8,7 +8,7 @@ import ModalComponent from './sub_components/Modal'
 import Spinner from './Spinner'
 import { addNewFieldMsg, addNewFieldHeader } from '../utilities.js/variables'
 
-function SellerDashboard() {
+function SellerDashboard({ HTTP }) {
   const { user } = useSelector((state) => state.auth)
   const [sellersInventory, setSellersInventory] = useState('')
   const [sellersName, setSellersName] = useState('')
@@ -16,12 +16,11 @@ function SellerDashboard() {
   const [modalBodyMessage, setModalBodyMessage] = useState('')
   const [modalHeaderMessage, setModalHeaderMessage] = useState('')
   const [cancel] = useState(false)
-  const dispatch = useDispatch()
   const navigate = useNavigate()
   const userInfo = JSON.parse(localStorage.getItem('user'))
   const token = userInfo.token
 
-  const API_URL_GET_USERS_INVENTORY = `https://otto-trader-api.herokuapp.com/api/users/inventory/${userInfo._id}`
+  const API_URL_GET_USERS_INVENTORY = `${HTTP}/api/users/inventory/${userInfo._id}`
 
   const requestOptions = {
     method: 'GET',
@@ -49,7 +48,7 @@ function SellerDashboard() {
     if (!user) {
       navigate('/login')
     }
-  }, [user, navigate, dispatch, API_URL_GET_USERS_INVENTORY])
+  }, [user, navigate, API_URL_GET_USERS_INVENTORY])
 
   const handleCarDetails = (e, car) => {
     e.preventDefault()
@@ -91,6 +90,7 @@ function SellerDashboard() {
 
         <ModalComponent
           show={show}
+          HTTP={HTTP}
           handleClose={handleClose}
           handleShow={handleShow}
           onSubmit={onSubmit}

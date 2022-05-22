@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 function ModalComponent({
+  HTTP,
   handleClose,
   onSubmit,
   show,
@@ -17,7 +18,7 @@ function ModalComponent({
   const userInfo = JSON.parse(localStorage.getItem('user'))
   const token = userInfo.token
 
-  const API_URL_GET_USERS_INVENTORY = `https://otto-trader-api.herokuapp.com/api/users/inventory/${userInfo._id}`
+  const API_URL_GET_USERS_INVENTORY = `${HTTP}/api/users/inventory/${userInfo._id}`
 
   const requestOptions = {
     method: 'GET',
@@ -29,10 +30,12 @@ function ModalComponent({
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(API_URL_GET_USERS_INVENTORY, requestOptions)
-      const resData = await response.json()
-      setSellersName({ prefix: resData.prefix })
-    }
 
+      const resData = await response.json()
+
+      setSellersName({ prefix: resData.prefix })
+      console.log(sellersName)
+    }
     fetchData()
     if (!token) {
       navigate('/login')
@@ -41,7 +44,7 @@ function ModalComponent({
 
   return (
     <>
-      <Modal show={show} onHide={handleClose}>
+      <Modal className="px-2" show={show} onHide={handleClose}>
         {!modalMessageConfirmed ? (
           <>
             {' '}
@@ -52,18 +55,18 @@ function ModalComponent({
             <Modal.Footer>
               <Button
                 variant="secondary"
-                className="px-3"
+                className="px-4 m-1"
                 onClick={handleClose}
               >
-                {!sellersName.prefix ? 'No' : 'Later'}
+                {sellersName.prefix ? 'No' : 'Later'}
               </Button>
               {!cancel ? (
                 <Button
                   variant="primary"
                   onClick={onSubmit}
-                  className="btn btn-dark col-8  m-2"
+                  className="btn btn-dark col-8  m-1"
                 >
-                  {!sellersName.prefix
+                  {sellersName.prefix
                     ? 'Yes, Please Submit'
                     : 'Update Profile Now'}
                 </Button>

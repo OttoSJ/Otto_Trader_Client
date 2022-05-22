@@ -47,9 +47,7 @@ function UserForm({ onChange, userInformation }) {
           >
             <option value="Choose">
               {' '}
-              {userInformation.prefix
-                ? userInformation.prefix
-                : 'Choose...'}{' '}
+              {userInformation ? userInformation.prefix : 'Choose...'}{' '}
             </option>
 
             <option value="Mr">Mr</option>

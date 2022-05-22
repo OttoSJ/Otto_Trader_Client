@@ -19,7 +19,7 @@ import {
 } from '../utilities.js/variables'
 import CarForm from './sub_components/CarForm'
 
-function EditCarDetails({ handleFormData }) {
+function EditCarDetails({ handleFormData, HTTP }) {
   const [carDetails, setCarDetails] = useState('')
   let {
     _id,
@@ -79,11 +79,11 @@ function EditCarDetails({ handleFormData }) {
   const navigate = useNavigate()
   const params = useParams()
 
-  const API_URL = `https://otto-trader-api.herokuapp.com/api/inventory/cardetails/${params.id}`
+  const API_URL = `${HTTP}/api/inventory/cardetails/${params.id}`
   const userInfo = JSON.parse(localStorage.getItem('user'))
   const token = userInfo.token
 
-  const API_URL_UPDATE_CAR_INVENTORY = `https://otto-trader-api.herokuapp.com/api/users/remove-car-from-inventory/${params.id}`
+  const API_URL_UPDATE_CAR_INVENTORY = `${HTTP}/api/users/remove-car-from-inventory/${params.id}`
 
   const requestUpdateOptions = {
     method: 'PUT',
@@ -178,6 +178,7 @@ function EditCarDetails({ handleFormData }) {
             handleClose={handleClose}
             onSubmit={onSubmit}
             show={show}
+            HTTP={HTTP}
             cancel={cancel}
             handleDelete={handleDelete}
             modalBodyMessage={modalBodyMessage}

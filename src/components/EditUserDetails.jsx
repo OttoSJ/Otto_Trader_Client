@@ -15,7 +15,7 @@ import {
   confirmedEditMessage,
 } from '../utilities.js/variables'
 
-function EditUserDetails() {
+function EditUserDetails({ HTTP }) {
   const [userInformation, setUserInformation] = useState('')
   const [formData, setFormData] = useState({})
   const [modalBodyMessage, setModalBodyMessage] = useState('')
@@ -27,10 +27,10 @@ function EditUserDetails() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const API_URL_UPDATE_USER_INFO = `https://otto-trader-api.herokuapp.com/api/users/update-user-info/${params.userId}`
-  const API_URL_DELETE_USER_INFO = `https://otto-trader-api.herokuapp.com/api/users/delete-user/${params.userId}`
-  const API_URL_GET_USER_INFO = `https://otto-trader-api.herokuapp.com/api/users/user-info/${params.userId}`
-  const API_URL_DELETE_USER_INVENTORY_INFO = `https://otto-trader-api.herokuapp.com/api/users/delete-users-inventory/${params.userId}`
+  const API_URL_UPDATE_USER_INFO = `${HTTP}/api/users/update-user-info/${params.userId}`
+  const API_URL_DELETE_USER_INFO = `${HTTP}/api/users/delete-user/${params.userId}`
+  const API_URL_GET_USER_INFO = `${HTTP}/api/users/user-info/${params.userId}`
+  const API_URL_DELETE_USER_INVENTORY_INFO = `${HTTP}/api/users/delete-users-inventory/${params.userId}`
 
   const userInfo = JSON.parse(localStorage.getItem('user'))
   const token = userInfo.token
@@ -155,6 +155,7 @@ function EditUserDetails() {
         handleDelete={handleDelete}
         onSubmit={onSubmit}
         show={show}
+        HTTP={HTTP}
         cancel={cancel}
         modalBodyMessage={modalBodyMessage}
         modalHeaderMessage={modalHeaderMessage}

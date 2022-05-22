@@ -20,7 +20,7 @@ function CarForm({ onChange, carDetails }) {
     leatherseats,
     sunroof,
     bluetooth,
-    // comments,
+    comments,
     cruisecontrol,
     satradio,
     auxport,
