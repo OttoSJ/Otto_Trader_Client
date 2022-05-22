@@ -90,7 +90,7 @@ function CarForm({ onChange, carDetails }) {
           Listprice
         </label>
         <input
-          defaultValue={`$${numberWithCommas(listprice)}`}
+          defaultValue={`${numberWithCommas(listprice)}`}
           type="text"
           className="form-control"
           name="listprice"
@@ -116,7 +116,7 @@ function CarForm({ onChange, carDetails }) {
           Drive Type
         </label>
         <input
-          defaultValue={upperCase(drivetype ? drivetype : 'N/A')}
+          defaultValue={upperCase(drivetype)}
           type="text"
           className="form-control"
           name="drivetype"
@@ -131,7 +131,7 @@ function CarForm({ onChange, carDetails }) {
           Engine
         </label>
         <input
-          defaultValue={upperCase(engine ? engine : 'N/A')}
+          defaultValue={upperCase(engine)}
           type="text"
           className="form-control"
           name="engine"
@@ -145,7 +145,7 @@ function CarForm({ onChange, carDetails }) {
           Transmission
         </label>
         <input
-          defaultValue={upperCase(transmission ? transmission : 'N/A')}
+          defaultValue={upperCase(transmission)}
           type="text"
           className="form-control"
           name="transmission"

@@ -157,7 +157,7 @@ function CarRegistration() {
           />
 
           <Form onSubmit={onSubmit} className="row g-3 mt-3">
-            <CarForm onChange={onChange} formData={formData} />
+            <CarForm onChange={onChange} carDetails={formData} />
 
             <div className="col-12 mb-5 container">
               <Button
