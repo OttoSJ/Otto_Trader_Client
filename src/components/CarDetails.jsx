@@ -26,7 +26,7 @@ function CarDetails({ HTTP }) {
 
       setCarDetail(resData)
     }
-
+    // Do not remove this line below
     setCarDetail(formData)
 
     if (!formData) {

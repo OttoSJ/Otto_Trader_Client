@@ -20,7 +20,7 @@ function CarForm({ onChange, carDetails }) {
     leatherseats,
     sunroof,
     bluetooth,
-    // comments,
+    comments,
     cruisecontrol,
     satradio,
     auxport,
@@ -34,7 +34,7 @@ function CarForm({ onChange, carDetails }) {
           Make
         </label>
         <input
-          defaultValue={upperCase(make)}
+          defaultValue={carDetails ? upperCase(make) : null}
           autoFocus
           type="text"
           className="form-control"
@@ -49,7 +49,7 @@ function CarForm({ onChange, carDetails }) {
           Model
         </label>
         <input
-          defaultValue={upperCase(model)}
+          defaultValue={carDetails ? upperCase(model) : null}
           type="text"
           className="form-control"
           name="model"
@@ -64,7 +64,7 @@ function CarForm({ onChange, carDetails }) {
           Year
         </label>
         <input
-          defaultValue={year}
+          defaultValue={carDetails ? year : null}
           type="number"
           className="form-control"
           name="year"
@@ -77,7 +77,7 @@ function CarForm({ onChange, carDetails }) {
           Body Type
         </label>
         <input
-          defaultValue={upperCase(type)}
+          defaultValue={carDetails ? upperCase(type) : null}
           type="text"
           className="form-control"
           name="type"
@@ -90,7 +90,7 @@ function CarForm({ onChange, carDetails }) {
           Listprice
         </label>
         <input
-          defaultValue={`$${numberWithCommas(listprice)}`}
+          defaultValue={carDetails ? `${numberWithCommas(listprice)}` : null}
           type="text"
           className="form-control"
           name="listprice"
@@ -103,7 +103,7 @@ function CarForm({ onChange, carDetails }) {
           Color
         </label>
         <input
-          defaultValue={upperCase(color)}
+          defaultValue={carDetails ? upperCase(color) : null}
           type="text"
           className="form-control"
           name="color"
@@ -116,7 +116,7 @@ function CarForm({ onChange, carDetails }) {
           Drive Type
         </label>
         <input
-          defaultValue={upperCase(drivetype ? drivetype : 'N/A')}
+          defaultValue={carDetails ? upperCase(drivetype) : null}
           type="text"
           className="form-control"
           name="drivetype"
@@ -131,7 +131,7 @@ function CarForm({ onChange, carDetails }) {
           Engine
         </label>
         <input
-          defaultValue={upperCase(engine ? engine : 'N/A')}
+          defaultValue={engine ? upperCase(engine) : null}
           type="text"
           className="form-control"
           name="engine"
@@ -145,7 +145,7 @@ function CarForm({ onChange, carDetails }) {
           Transmission
         </label>
         <input
-          defaultValue={upperCase(transmission ? transmission : 'N/A')}
+          defaultValue={carDetails ? upperCase(transmission) : null}
           type="text"
           className="form-control"
           name="transmission"
@@ -159,7 +159,7 @@ function CarForm({ onChange, carDetails }) {
           Mileage
         </label>
         <input
-          defaultValue={numberWithCommas(mileage)}
+          defaultValue={carDetails ? numberWithCommas(mileage) : null}
           type="text"
           className="form-control"
           name="mileage"
@@ -176,7 +176,7 @@ function CarForm({ onChange, carDetails }) {
           Image
         </label>
         <input
-          defaultValue={image}
+          defaultValue={carDetails ? image : null}
           type="text"
           className="form-control"
           name="image"
