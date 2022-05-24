@@ -18,7 +18,7 @@ import { URL } from './utilities.js/functions'
 import ErrorPage from './components/ErrorPage'
 
 function App() {
-  const [data, setData] = useState([])
+  const [data, setData] = useState('')
   const [formData, setFormData] = useState('')
   const dispatch = useDispatch()
   const [HTTP] = useState(URL)

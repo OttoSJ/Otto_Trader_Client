@@ -7,7 +7,8 @@ import { updateCarDetails, deleteCar } from '../features/cars/carSlice'
 import { getOneCarById } from '../features/carDetails/carDetailsSlice'
 import { Form, Button } from 'react-bootstrap'
 import Spinner from './Spinner'
-import { toast } from 'react-toastify'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import ModalComponent from './sub_components/Modal'
 import {
   confirmEditCarMessage,
@@ -39,7 +40,7 @@ function EditCarDetails({ handleFormData, HTTP }) {
     leatherseats,
     sunroof,
     bluetooth,
-    // comments,
+    comments,
     cruisecontrol,
     satradio,
     auxport,
@@ -70,6 +71,7 @@ function EditCarDetails({ handleFormData, HTTP }) {
     auxport: auxport,
     amfm: amfm,
     listVehicle: listVehicle,
+    comments: comments,
   })
   const [show, setShow] = useState(false)
   const [modalBodyMessage, setModalBodyMessage] = useState('')
@@ -208,6 +210,7 @@ function EditCarDetails({ handleFormData, HTTP }) {
               </Button>
             </div>
           </Form>
+          <ToastContainer limit={1} />
         </>
       )
     }

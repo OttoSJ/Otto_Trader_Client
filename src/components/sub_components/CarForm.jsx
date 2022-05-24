@@ -182,7 +182,21 @@ function CarForm({ onChange, carDetails }) {
           onChange={onChange}
         />
       </div>
-      <div className="col-6">
+
+      <div className="col-7">
+        <label htmlFor="comments" className="form-label">
+          Comments
+        </label>
+        <input
+          defaultValue={carDetails ? comments : null}
+          type="text"
+          className="form-control"
+          name="comments"
+          id="comments"
+          onChange={onChange}
+        />
+      </div>
+      <div className="col-5">
         <label htmlFor="listVehicle" className="form-label">
           List Vehicle
         </label>

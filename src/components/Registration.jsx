@@ -2,7 +2,8 @@ import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { register, reset } from '../features/auth/authSlice'
-import { toast } from 'react-toastify'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import Spinner from '../components/Spinner'
 import { FaUser } from 'react-icons/fa'
 import UserForm from '../components/sub_components/UserForm'
@@ -100,6 +101,7 @@ function Registration() {
           Submit
         </Button>
       </Form>
+      <ToastContainer limit={1} />
     </div>
   )
 }

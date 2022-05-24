@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import Pagination from './Pagintation'
@@ -9,23 +9,16 @@ import Spinner from './Spinner'
 import { URL } from '../utilities.js/functions'
 
 function HomePage({ data }) {
-  // const [carDataLength, setCarDataLength] = useState(9)
+  // const [carDataLength, setCarDataLength] = useState([])
   const [query, setQuery] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
   const [carsPerPage] = useState(6)
-  const [loading, setLoading] = useState(true)
 
   const indexOfLastCar = currentPage * carsPerPage
   const indexIfFirstCar = indexOfLastCar - carsPerPage
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
-
-  useEffect(() => {
-    if (data) {
-      setLoading(false)
-    }
-  }, [setLoading])
 
   const handleCarDetails = (e, car) => {
     e.preventDefault()
@@ -52,7 +45,7 @@ function HomePage({ data }) {
     window.scrollTo(0, 0)
   }
 
-  if (loading) {
+  if (!data) {
     return <Spinner />
   }
   const newInvntory = data.filter((car) => {
@@ -90,6 +83,8 @@ function HomePage({ data }) {
                       .toLowerCase()
                       .includes(query.toLowerCase())
                   ) {
+                    // console.log(filteredCars)
+
                     return filteredCars
                   } else if (
                     filteredCars.model

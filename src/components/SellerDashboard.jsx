@@ -15,7 +15,7 @@ function SellerDashboard({ HTTP }) {
   const [show, setShow] = useState(false)
   const [modalBodyMessage, setModalBodyMessage] = useState('')
   const [modalHeaderMessage, setModalHeaderMessage] = useState('')
-  const [cancel] = useState(false)
+  const [loaded, setLoaded] = useState(false)
   const navigate = useNavigate()
   const userInfo = JSON.parse(localStorage.getItem('user'))
   const token = userInfo.token
@@ -34,7 +34,10 @@ function SellerDashboard({ HTTP }) {
     const fetchData = async () => {
       const response = await fetch(API_URL_GET_USERS_INVENTORY, requestOptions)
       const resData = await response.json()
-      console.log(resData.vehicleinventory)
+      if (response.status === 200 || 201) {
+        setLoaded(true)
+      }
+
       setSellersInventory(resData.vehicleinventory)
       setSellersName([
         { prefix: resData.prefix },
@@ -46,7 +49,7 @@ function SellerDashboard({ HTTP }) {
       !resData.prefix ? setShow(true) : setShow(false)
     }
     fetchData()
-    console.log(userInfo)
+
     if (!user) {
       navigate('/login')
     }
@@ -71,7 +74,9 @@ function SellerDashboard({ HTTP }) {
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
 
-  // console.log(sellersName[0].prefix)
+  if (!loaded) {
+    return <Spinner />
+  }
 
   return (
     <>
@@ -134,11 +139,7 @@ function SellerDashboard({ HTTP }) {
               </main>
             ))
           ) : (
-            <h6 className="container-centered">
-              {/* Loading...
-              <Spinner /> */}
-              You have no inventory
-            </h6>
+            <h6 className="container-centered">You have no inventory</h6>
           )}
         </div>
       </div>
