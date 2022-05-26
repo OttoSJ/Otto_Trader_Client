@@ -32,7 +32,7 @@ function CarForm({ onChange, carDetails }) {
     <>
       <div className="col-6">
         <label htmlFor="make" className="form-label">
-          Make
+          Make <span className="required">*</span>
         </label>
         <input
           defaultValue={carDetails ? upperCase(make) : null}
@@ -47,7 +47,7 @@ function CarForm({ onChange, carDetails }) {
       </div>
       <div className="col-6">
         <label htmlFor="model" className="form-label">
-          Model
+          Model <span className="required">*</span>
         </label>
         <input
           defaultValue={carDetails ? upperCase(model) : null}
@@ -62,7 +62,7 @@ function CarForm({ onChange, carDetails }) {
 
       <div className="col-6">
         <label htmlFor="year" className="form-label">
-          Year
+          Year <span className="required">*</span>
         </label>
         <input
           defaultValue={carDetails ? year : null}
@@ -75,7 +75,7 @@ function CarForm({ onChange, carDetails }) {
       </div>
       <div className="col-6">
         <label htmlFor="type" className="form-label">
-          Body Type
+          Body Type <span className="required">*</span>
         </label>
         <input
           defaultValue={carDetails ? upperCase(type) : null}
@@ -88,7 +88,7 @@ function CarForm({ onChange, carDetails }) {
       </div>
       <div className="col-6">
         <label htmlFor="listprice" className="form-label">
-          Listprice
+          Listprice <span className="required">*</span>
         </label>
         <input
           defaultValue={carDetails ? `${numberWithCommas(listprice)}` : null}
@@ -101,7 +101,7 @@ function CarForm({ onChange, carDetails }) {
       </div>
       <div className="col-6">
         <label htmlFor="color" className="form-label">
-          Color
+          Color <span className="required">*</span>
         </label>
         <input
           defaultValue={carDetails ? upperCase(color) : null}
@@ -114,7 +114,7 @@ function CarForm({ onChange, carDetails }) {
       </div>
       <div className="col-6">
         <label htmlFor="drivetype" className="form-label">
-          Drive Type
+          Drive Type <span className="required">*</span>
         </label>
         <input
           defaultValue={carDetails ? upperCase(drivetype) : null}
@@ -129,7 +129,7 @@ function CarForm({ onChange, carDetails }) {
 
       <div className="col-6">
         <label htmlFor="engine" className="form-label">
-          Engine
+          Engine <span className="required">*</span>
         </label>
         <input
           defaultValue={engine ? upperCase(engine) : null}
@@ -143,7 +143,7 @@ function CarForm({ onChange, carDetails }) {
 
       <div className="col-6">
         <label htmlFor="transmission" className="form-label">
-          Transmission
+          Transmission <span className="required">*</span>
         </label>
         <input
           defaultValue={carDetails ? upperCase(transmission) : null}
@@ -157,7 +157,7 @@ function CarForm({ onChange, carDetails }) {
 
       <div className="col-6">
         <label htmlFor="mileage" className="form-label">
-          Mileage
+          Mileage <span className="required">*</span>
         </label>
         <input
           defaultValue={carDetails ? numberWithCommas(mileage) : null}

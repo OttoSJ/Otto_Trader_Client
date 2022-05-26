@@ -3,6 +3,7 @@ import { upperCase, numberWithCommas } from '../../utilities.js/functions'
 import { Link } from 'react-router-dom'
 
 function CarCard({ filteredCars, handleCarDetails }) {
+  if (filteredCars.image) console.log('true')
   return (
     <>
       <main
@@ -13,7 +14,7 @@ function CarCard({ filteredCars, handleCarDetails }) {
           className="main-picture"
           src={
             !filteredCars.image
-              ? 'https://ouikar.com/pub/media/catalog/product/placeholder/default/image_not_available.png'
+              ? 'https://whetstonefire.org/wp-content/uploads/2020/06/image-not-available.jpg'
               : filteredCars.image
           }
           alt=""

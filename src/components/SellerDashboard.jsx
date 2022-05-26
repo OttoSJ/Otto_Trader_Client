@@ -114,7 +114,7 @@ function SellerDashboard({ HTTP }) {
                   className="main-picture"
                   src={
                     !car.image
-                      ? 'https://ouikar.com/pub/media/catalog/product/placeholder/default/image_not_available.png'
+                      ? 'https://westsiderc.org/wp-content/uploads/2019/08/Image-Not-Available.png'
                       : car.image
                   }
                   alt=""

@@ -7,7 +7,7 @@ function UserForm({ onChange, userInformation }) {
       <Row>
         <Col className="mt-5" md={5}>
           <Form.Label htmlFor="firstname" className="form-label">
-            First Name
+            First Name <span className="required">*</span>
           </Form.Label>
           <Form.Control
             autoFocus
@@ -22,7 +22,7 @@ function UserForm({ onChange, userInformation }) {
         </Col>
         <Col className="mt-5" md={5}>
           <Form.Label htmlFor="lastname" className="form-label">
-            Last Name
+            Last Name <span className="required">*</span>
           </Form.Label>
           <Form.Control
             type="text"
@@ -62,7 +62,7 @@ function UserForm({ onChange, userInformation }) {
           <Row>
             <Col className="mt-5" md={6}>
               <Form.Label htmlFor="password" className="form-label">
-                Password
+                Password <span className="required">*</span>
               </Form.Label>
               <Form.Control
                 type="password"
@@ -75,7 +75,7 @@ function UserForm({ onChange, userInformation }) {
             </Col>
             <Col className="mt-5" md={6}>
               <Form.Label htmlFor="password2" className="form-label">
-                Confirm Password
+                Confirm Password <span className="required">*</span>
               </Form.Label>
               <Form.Control
                 type="password"
@@ -93,7 +93,7 @@ function UserForm({ onChange, userInformation }) {
       <Row>
         <Col className="mt-5" md={6}>
           <Form.Label htmlFor="username" className="form-label">
-            Username
+            Username <span className="required">*</span>
           </Form.Label>
           <Form.Control
             type="username"
@@ -107,7 +107,7 @@ function UserForm({ onChange, userInformation }) {
         </Col>
         <Col className="mt-5" md={6}>
           <Form.Label htmlFor="email" className="form-label">
-            Email
+            Email <span className="required">*</span>
           </Form.Label>
           <Form.Control
             type="email"
@@ -124,7 +124,7 @@ function UserForm({ onChange, userInformation }) {
       <Row>
         <Col className="mt-5" md={12}>
           <Form.Label htmlFor="address" className="form-label">
-            Address
+            Address <span className="required">*</span>
           </Form.Label>
           <Form.Control
             type="text"
@@ -139,7 +139,7 @@ function UserForm({ onChange, userInformation }) {
       </Row>
       <Col className="mt-5" md={6}>
         <Form.Label htmlFor="city" className="form-label">
-          City
+          City <span className="required">*</span>
         </Form.Label>
         <Form.Control
           type="text"
@@ -153,7 +153,7 @@ function UserForm({ onChange, userInformation }) {
       </Col>
       <Col className="mt-5" md={3}>
         <Form.Label htmlFor="state" className="form-label">
-          State
+          State <span className="required">*</span>
         </Form.Label>
         <Form.Select
           id="state state-list"
@@ -220,7 +220,7 @@ function UserForm({ onChange, userInformation }) {
       </Col>
       <Col className="mt-5" md={3}>
         <Form.Label htmlFor="zip" className="form-label">
-          Zip
+          Zip <span className="required">*</span>
         </Form.Label>
         <Form.Control
           type="text"

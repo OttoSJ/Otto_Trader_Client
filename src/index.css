@@ -130,6 +130,10 @@ Link {
   border-top-right-radius: 8px;
 }
 
+.required {
+  color: red;
+}
+
 .sellers-page-container {
   width: 100vw;
   height: auto;

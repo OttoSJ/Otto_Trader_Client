@@ -22,7 +22,7 @@ function App() {
   const [formData, setFormData] = useState('')
   const dispatch = useDispatch()
   const [HTTP] = useState(URL)
-  console.log(HTTP)
+
   const API_URL_INVENTORY = `${HTTP}/api/inventory/`
 
   useEffect(() => {
