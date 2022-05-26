@@ -50,7 +50,7 @@ function UserForm({ onChange, userInformation }) {
               {userInformation ? userInformation.prefix : 'Choose...'}{' '}
             </option>
 
-            <option value={null}>Choose..</option>
+            <option value={null}></option>
             <option value="Mr">Mr</option>
             <option value="Mrs">Mrs</option>
           </Form.Select>
