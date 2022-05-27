@@ -2,8 +2,9 @@ import React from 'react'
 import { upperCase, numberWithCommas } from '../../utilities.js/functions'
 import { Link } from 'react-router-dom'
 import Like from '../../components/sub_components/Like'
+import { FaEye } from 'react-icons/fa'
 
-function CarCard({ filteredCars, handleCarDetails }) {
+function CarCard({ filteredCars, handleCarDetails, handleLiked, liked }) {
   return (
     <>
       <div className="main-container mt-3 mb-2 cursor">
@@ -36,9 +37,16 @@ function CarCard({ filteredCars, handleCarDetails }) {
         </main>
         <div className="container-flex-row">
           {' '}
-          <span className="mx-4 pb-3 minus-margin-top ">something</span>
+          <span className="mx-3 pb-3 minus-margin-top ">
+            {' '}
+            <FaEye /> views 23
+          </span>
           <span className="mx-4 pb-3 minus-margin-top ">
-            <Like />
+            <Like
+              handleLiked={handleLiked}
+              liked={liked}
+              filteredCars={filteredCars}
+            />
           </span>
         </div>
       </div>

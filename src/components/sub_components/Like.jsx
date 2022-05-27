@@ -1,17 +1,8 @@
-import { useState } from 'react'
 import { FaRegHeart, FaHeart } from 'react-icons/fa'
 
-function Like() {
-  const [liked, setLiked] = useState(true)
-
-  const onClick = () => {
-    if (liked) {
-      setLiked(false)
-    } else setLiked(true)
-  }
-
+function Like({ handleLiked, liked, filteredCars }) {
   return (
-    <i onClick={onClick} className="cursor">
+    <i onClick={(e) => handleLiked(e, filteredCars)} className="cursor">
       {' '}
       {!liked ? <FaRegHeart /> : <FaHeart className="liked" />}
     </i>
