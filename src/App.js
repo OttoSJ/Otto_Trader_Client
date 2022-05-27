@@ -16,6 +16,7 @@ import { GlobalContext } from './utilities.js/GlobalContext'
 import EditUserDetails from './components/EditUserDetails'
 import { URL } from './utilities.js/functions'
 import ErrorPage from './components/ErrorPage'
+import Like from '../src/components/sub_components/Like'
 
 function App() {
   const [data, setData] = useState('')
@@ -75,6 +76,7 @@ function App() {
                 <EditCarDetails handleFormData={handleFormData} HTTP={HTTP} />
               }
             />
+            <Route path="/like" element={<Like />} />
             <Route
               path="/edituserdetails/:userId"
               element={<EditUserDetails HTTP={HTTP} />}

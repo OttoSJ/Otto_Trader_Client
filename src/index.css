@@ -63,7 +63,6 @@ a {
 
 .container {
   display: flex;
-  /* flex-direction: column; */
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
@@ -74,7 +73,6 @@ a {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  /* width: 50rem; */
 }
 
 .comments-container {
@@ -94,6 +92,10 @@ a {
 
 .minus-margin {
   margin: -0.1rem;
+}
+
+.minus-margin-top {
+  margin: -0.2rem;
 }
 
 .main-container {
@@ -122,16 +124,16 @@ a {
 
 .main-picture,
 Link {
-  /* width: 100%;
-  height: 70%;
-  object-fit: cover; */
-  /* height: 50%; */
+  width: 100%;
+  /* height: 70%; */
   object-fit: cover;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
 
-.required {
+.required,
+.liked,
+.warning {
   color: red;
 }
 
