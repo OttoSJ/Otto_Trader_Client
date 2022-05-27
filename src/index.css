@@ -231,3 +231,27 @@ Link {
     margin: 0.5rem;
   }
 }
+
+@media (min-width: 300px) {
+  .main-container {
+    width: 30%;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .main-display-container {
+    width: 50rem;
+    height: auto;
+    justify-content: center;
+  }
+
+  .main-picture {
+    height: 30%;
+    height: 10rem;
+    object-fit: cover;
+  }
+
+  .car-details-image {
+    width: 50rem;
+  }
+}
