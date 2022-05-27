@@ -13,10 +13,10 @@ function HomePage({ data }) {
   const [query, setQuery] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
   const [carsPerPage] = useState(6)
-
+  const [liked, setLiked] = useState(false)
   const indexOfLastCar = currentPage * carsPerPage
   const indexIfFirstCar = indexOfLastCar - carsPerPage
-
+  const userInfo = JSON.parse(localStorage.getItem('user'))
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -34,6 +34,14 @@ function HomePage({ data }) {
 
     fetchData()
   }
+  const handleLiked = (e, car) => {
+    e.preventDefault()
+    console.log('Car liked!', car._id)
+    console.log('userId!', userInfo._id)
+    if (liked) {
+      setLiked(false)
+    } else setLiked(true)
+  }
 
   const handleSearch = (e, search) => {
     e.preventDefault()
@@ -48,10 +56,8 @@ function HomePage({ data }) {
   if (!data) {
     return <Spinner />
   }
-  const newInvntory = data.filter((car) => {
-    return car.listVehicle === true
-  })
-  console.log(newInvntory)
+
+  // console.log(newInvntory)
 
   return (
     <>
@@ -98,6 +104,8 @@ function HomePage({ data }) {
                     key={filteredCars._id}
                     filteredCars={filteredCars}
                     handleCarDetails={handleCarDetails}
+                    handleLiked={handleLiked}
+                    liked={liked}
                   />
                 ))
             : null}
