@@ -13,11 +13,10 @@ function HomePage({ data }) {
   const [query, setQuery] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
   const [carsPerPage] = useState(6)
-  const [liked, setLiked] = useState(true)
+  const [liked, setLiked] = useState(false)
   const indexOfLastCar = currentPage * carsPerPage
   const indexIfFirstCar = indexOfLastCar - carsPerPage
   const userInfo = JSON.parse(localStorage.getItem('user'))
-  const userId = userInfo._id
   const dispatch = useDispatch()
   const navigate = useNavigate()
 

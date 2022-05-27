@@ -5,6 +5,8 @@ import Like from '../../components/sub_components/Like'
 import { FaEye } from 'react-icons/fa'
 
 function CarCard({ filteredCars, handleCarDetails, handleLiked, liked }) {
+  const userInfo = JSON.parse(localStorage.getItem('user'))
+
   return (
     <>
       <div className="main-container mt-3 mb-2 cursor">
@@ -41,13 +43,15 @@ function CarCard({ filteredCars, handleCarDetails, handleLiked, liked }) {
             {' '}
             <FaEye /> views 23
           </span>
-          <span className="mx-4 pb-3 minus-margin-top ">
-            <Like
-              handleLiked={handleLiked}
-              liked={liked}
-              filteredCars={filteredCars}
-            />
-          </span>
+          {userInfo ? (
+            <span className="mx-4 pb-3 minus-margin-top ">
+              <Like
+                handleLiked={handleLiked}
+                liked={liked}
+                filteredCars={filteredCars}
+              />
+            </span>
+          ) : null}
         </div>
       </div>
     </>
