@@ -83,8 +83,6 @@ function HomePage({ data }) {
                       .toLowerCase()
                       .includes(query.toLowerCase())
                   ) {
-                    // console.log(filteredCars)
-
                     return filteredCars
                   } else if (
                     filteredCars.model
