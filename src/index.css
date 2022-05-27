@@ -126,7 +126,7 @@ Link {
   height: 70%;
   object-fit: cover; */
   /* height: 50%; */
-  object-fit: fill;
+  object-fit: cover;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }

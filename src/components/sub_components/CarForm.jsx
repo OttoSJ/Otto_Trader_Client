@@ -205,11 +205,20 @@ function CarForm({ onChange, carDetails }) {
           name="listVehicle"
           className="form-select select-box-size"
           onChange={onChange}
-          defaultValue={listVehicle}
+          // defaultValue={listVehicle}
         >
-          <option value="Choose"> {listVehicle ? 'Yes' : 'No'} </option>
-          <option value={true}>Yes </option>
-          <option value={false}>No </option>
+          {listVehicle ? (
+            <>
+              {' '}
+              <option value={true}>Yes </option>
+              <option value={false}>No </option>
+            </>
+          ) : (
+            <>
+              <option value={false}>No </option>
+              <option value={true}>Yes </option>
+            </>
+          )}
         </select>
       </div>
 
@@ -229,9 +238,18 @@ function CarForm({ onChange, carDetails }) {
               onChange={onChange}
               defaultValue={ac}
             >
-              <option value="Choose"> {ac ? 'Yes' : 'No'} </option>
-              <option value="true">Yes </option>
-              <option value="false">No </option>
+              {ac ? (
+                <>
+                  {' '}
+                  <option value={true}>Yes </option>
+                  <option value={false}>No </option>
+                </>
+              ) : (
+                <>
+                  <option value={false}>No </option>
+                  <option value={true}>Yes </option>
+                </>
+              )}
             </select>
           </div>
           <div className="col-md-2">
@@ -244,10 +262,18 @@ function CarForm({ onChange, carDetails }) {
               className="form-select select-box-size"
               onChange={onChange}
             >
-              <option value="Choose"> {leatherseats ? 'Yes' : 'No'} </option>
-
-              <option value="true">Yes</option>
-              <option value="false">No</option>
+              {leatherseats ? (
+                <>
+                  {' '}
+                  <option value={true}>Yes </option>
+                  <option value={false}>No </option>
+                </>
+              ) : (
+                <>
+                  <option value={false}>No </option>
+                  <option value={true}>Yes </option>
+                </>
+              )}
             </select>
           </div>
           <div className="col-md-2">
@@ -260,10 +286,18 @@ function CarForm({ onChange, carDetails }) {
               className="form-select select-box-size"
               onChange={onChange}
             >
-              <option value="Choose"> {sunroof ? 'Yes' : 'No'} </option>
-
-              <option value="true">Yes</option>
-              <option value="false">No</option>
+              {sunroof ? (
+                <>
+                  {' '}
+                  <option value={true}>Yes </option>
+                  <option value={false}>No </option>
+                </>
+              ) : (
+                <>
+                  <option value={false}>No </option>
+                  <option value={true}>Yes </option>
+                </>
+              )}
             </select>
           </div>
           <div className="col-md-2">
@@ -276,10 +310,18 @@ function CarForm({ onChange, carDetails }) {
               className="form-select select-box-size"
               onChange={onChange}
             >
-              <option value="Choose"> {bluetooth ? 'Yes' : 'No'} </option>
-
-              <option value="true">Yes </option>
-              <option value="false">No </option>
+              {bluetooth ? (
+                <>
+                  {' '}
+                  <option value={true}>Yes </option>
+                  <option value={false}>No </option>
+                </>
+              ) : (
+                <>
+                  <option value={false}>No </option>
+                  <option value={true}>Yes </option>
+                </>
+              )}
             </select>
           </div>
           <div className="col-md-2">
@@ -292,10 +334,18 @@ function CarForm({ onChange, carDetails }) {
               className="form-select select-box-size"
               onChange={onChange}
             >
-              <option value="Choose"> {cruisecontrol ? 'Yes' : 'No'} </option>
-
-              <option value="true">Yes </option>
-              <option value="false">No </option>
+              {cruisecontrol ? (
+                <>
+                  {' '}
+                  <option value={true}>Yes </option>
+                  <option value={false}>No </option>
+                </>
+              ) : (
+                <>
+                  <option value={false}>No </option>
+                  <option value={true}>Yes </option>
+                </>
+              )}
             </select>
           </div>
           <div className="col-md-2 ">
@@ -308,10 +358,18 @@ function CarForm({ onChange, carDetails }) {
               className="form-select select-box-size"
               onChange={onChange}
             >
-              <option value="Choose"> {satradio ? 'Yes' : 'No'} </option>
-
-              <option value="true">Yes </option>
-              <option value="false">No </option>
+              {satradio ? (
+                <>
+                  {' '}
+                  <option value={true}>Yes </option>
+                  <option value={false}>No </option>
+                </>
+              ) : (
+                <>
+                  <option value={false}>No </option>
+                  <option value={true}>Yes </option>
+                </>
+              )}
             </select>
           </div>
           <div className="col-md-2 ">
@@ -324,10 +382,18 @@ function CarForm({ onChange, carDetails }) {
               className="form-select select-box-size"
               onChange={onChange}
             >
-              <option value="Choose"> {auxport ? 'Yes' : 'No'} </option>
-
-              <option value="true">Yes </option>
-              <option value="false">No </option>
+              {auxport ? (
+                <>
+                  {' '}
+                  <option value={true}>Yes </option>
+                  <option value={false}>No </option>
+                </>
+              ) : (
+                <>
+                  <option value={false}>No </option>
+                  <option value={true}>Yes </option>
+                </>
+              )}
             </select>
           </div>
           <div className="col-md-2">
@@ -340,9 +406,18 @@ function CarForm({ onChange, carDetails }) {
               className="form-select select-box-size"
               onChange={onChange}
             >
-              <option value="Choose"> {amfm ? 'Yes' : 'No'} </option>
-              <option value="true">Yes </option>
-              <option value="false">No </option>
+              {amfm ? (
+                <>
+                  {' '}
+                  <option value={true}>Yes </option>
+                  <option value={false}>No </option>
+                </>
+              ) : (
+                <>
+                  <option value={false}>No </option>
+                  <option value={true}>Yes </option>
+                </>
+              )}
             </select>
           </div>
         </div>
