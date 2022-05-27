@@ -107,7 +107,7 @@ function CarDetails({ HTTP }) {
               className="car-details-image mt-3"
               src={
                 !image
-                  ? 'https://whetstonefire.org/wp-content/uploads/2020/06/image-not-available.jpg'
+                  ? 'https://ouikar.com/pub/media/catalog/product/placeholder/default/image_not_available.png'
                   : image
               }
               alt=""
