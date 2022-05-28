@@ -114,7 +114,7 @@ function SellerDashboard({ HTTP }) {
                   className="main-picture"
                   src={
                     !car.image
-                      ? 'https://ouikar.com/pub/media/catalog/product/placeholder/default/image_not_available.png'
+                      ? 'https://whetstonefire.org/wp-content/uploads/2020/06/image-not-available.jpg'
                       : car.image
                   }
                   alt=""

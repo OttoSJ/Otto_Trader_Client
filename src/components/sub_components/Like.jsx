@@ -1,9 +1,6 @@
 import { FaRegHeart, FaHeart } from 'react-icons/fa'
-import { useEffect } from 'react'
 
 function Like({ filteredCars, handleLiked, carId, sellerFavorites }) {
-  useEffect(() => {}, [handleLiked, sellerFavorites])
-  console.log('Hi')
   const getFavorites = () => {
     const checkId = (favoritesCars) => favoritesCars === carId
     if (!sellerFavorites) {

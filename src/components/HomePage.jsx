@@ -18,28 +18,32 @@ function HomePage({ data, HTTP }) {
   const indexOfLastCar = currentPage * carsPerPage
   const indexIfFirstCar = indexOfLastCar - carsPerPage
   const userInfo = JSON.parse(localStorage.getItem('user'))
-  const token = userInfo.token
+  const token = userInfo ? userInfo.token : null
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const API_URL_GET_USERS_INVENTORY = `${HTTP}/api/users/inventory/${userInfo._id}`
-
-  const requestOptions = {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-  }
-
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(API_URL_GET_USERS_INVENTORY, requestOptions)
-      const resData = await response.json()
-      setSellerFavorites(resData.favorites)
-      console.log('Hi')
-    }
-    fetchData()
+    if (userInfo) {
+      const API_URL_GET_USERS_INVENTORY = `${HTTP}/api/users/inventory/${userInfo._id}`
+
+      const requestOptions = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      }
+
+      const fetchData = async () => {
+        const response = await fetch(
+          API_URL_GET_USERS_INVENTORY,
+          requestOptions
+        )
+        const resData = await response.json()
+        setSellerFavorites(resData.favorites)
+      }
+      fetchData()
+    } else return null
   }, [liked, setSellerFavorites])
 
   const handleCarDetails = (e, car) => {
@@ -59,6 +63,7 @@ function HomePage({ data, HTTP }) {
 
   const handleLiked = (e, car) => {
     e.preventDefault()
+
     const API_URL_ADD_TO_FAVORITES = `${HTTP}/api/users/update-user-inventory/${userInfo._id}`
 
     const API_URL_REMOVE_FROM_FAVORITES = `${HTTP}/api/users/remove-car-from-inventory/${userInfo._id}`
@@ -87,7 +92,7 @@ function HomePage({ data, HTTP }) {
         requestAddFavOptions
       )
       const resData = await response.json()
-      console.log(resData.favorites)
+
       setSellerFavorites(resData.favorites)
     }
 
@@ -97,17 +102,13 @@ function HomePage({ data, HTTP }) {
         requestDeleteFavOptions
       )
       const resData = await response.json()
-      console.log(resData)
-      setSellerFavorites(response.favorites)
+
+      setSellerFavorites(resData.favorites)
     }
-    // fetchUnlikeData()
-    // fetchLikeData()
+
     const checkId = (favoritesCars) => favoritesCars === car._id
 
-    console.log(sellerFavorites.some(checkId))
-    // console.log('UNLIKED!!!')
-    // console.log('LIKED!!!')
-    if (!sellerFavorites.some(checkId)) {
+    if (!sellerFavorites.some(checkId) || sellerFavorites === []) {
       setLiked(true)
       fetchLikeData()
     } else {
