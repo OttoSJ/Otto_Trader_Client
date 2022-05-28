@@ -16,7 +16,7 @@ import { GlobalContext } from './utilities.js/GlobalContext'
 import EditUserDetails from './components/EditUserDetails'
 import { URL } from './utilities.js/functions'
 import ErrorPage from './components/ErrorPage'
-import Like from '../src/components/sub_components/Like'
+import Sandbox from '../src/components/Sandbox'
 
 function App() {
   const [data, setData] = useState('')
@@ -30,13 +30,14 @@ function App() {
     const fetchData = async () => {
       const response = await fetch(API_URL_INVENTORY)
       const resData = await response.json()
-
       if (resData.length > 0) {
         setData(resData)
         dispatch(getCars())
       }
     }
+
     fetchData()
+
     dispatch(getAllUsers())
   }, [API_URL_INVENTORY, dispatch])
 
@@ -76,7 +77,7 @@ function App() {
                 <EditCarDetails handleFormData={handleFormData} HTTP={HTTP} />
               }
             />
-            <Route path="/like" element={<Like />} />
+            <Route path="/sandbox" element={<Sandbox />} />
             <Route
               path="/edituserdetails/:userId"
               element={<EditUserDetails HTTP={HTTP} />}

@@ -1,31 +1,53 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import Pagination from './Pagintation'
 import CarCard from './sub_components/CarCard'
 import { getOneCarById } from '../features/carDetails/carDetailsSlice'
 import Spinner from './Spinner'
-import { URL } from '../utilities.js/functions'
+import { register } from '../features/auth/authSlice'
 
-function HomePage({ data }) {
+function HomePage({ data, HTTP }) {
   // const [carDataLength, setCarDataLength] = useState([])
   const [query, setQuery] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
   const [carsPerPage] = useState(6)
   const [liked, setLiked] = useState(false)
+  const [sellerFavorites, setSellerFavorites] = useState('')
   const indexOfLastCar = currentPage * carsPerPage
   const indexIfFirstCar = indexOfLastCar - carsPerPage
   const userInfo = JSON.parse(localStorage.getItem('user'))
+  const token = userInfo.token
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
+  const API_URL_GET_USERS_INVENTORY = `${HTTP}/api/users/inventory/${userInfo._id}`
+
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(API_URL_GET_USERS_INVENTORY, requestOptions)
+      const resData = await response.json()
+      setSellerFavorites(resData.favorites)
+      console.log('Hi')
+    }
+    fetchData()
+  }, [liked, setSellerFavorites])
 
   const handleCarDetails = (e, car) => {
     e.preventDefault()
     dispatch(getOneCarById(car._id))
 
     const fetchData = async () => {
-      const API_URL = `${URL}/api/inventory/cardetails/${car._id}`
+      const API_URL = `${HTTP}/api/inventory/cardetails/${car._id}`
       const response = await fetch(API_URL)
       const resData = await response.json()
 
@@ -34,13 +56,64 @@ function HomePage({ data }) {
 
     fetchData()
   }
+
   const handleLiked = (e, car) => {
     e.preventDefault()
-    console.log('Car liked!', car._id)
-    console.log('userId!', userInfo._id)
-    if (liked) {
+    const API_URL_ADD_TO_FAVORITES = `${HTTP}/api/users/update-user-inventory/${userInfo._id}`
+
+    const API_URL_REMOVE_FROM_FAVORITES = `${HTTP}/api/users/remove-car-from-inventory/${userInfo._id}`
+
+    const requestAddFavOptions = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ favorites: car._id }),
+    }
+
+    const requestDeleteFavOptions = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ likedCarId: car._id, userId: userInfo._id }),
+    }
+
+    const fetchLikeData = async () => {
+      const response = await fetch(
+        API_URL_ADD_TO_FAVORITES,
+        requestAddFavOptions
+      )
+      const resData = await response.json()
+      console.log(resData.favorites)
+      setSellerFavorites(resData.favorites)
+    }
+
+    const fetchUnlikeData = async () => {
+      const response = await fetch(
+        API_URL_REMOVE_FROM_FAVORITES,
+        requestDeleteFavOptions
+      )
+      const resData = await response.json()
+      console.log(resData)
+      setSellerFavorites(response.favorites)
+    }
+    // fetchUnlikeData()
+    // fetchLikeData()
+    const checkId = (favoritesCars) => favoritesCars === car._id
+
+    console.log(sellerFavorites.some(checkId))
+    // console.log('UNLIKED!!!')
+    // console.log('LIKED!!!')
+    if (!sellerFavorites.some(checkId)) {
+      setLiked(true)
+      fetchLikeData()
+    } else {
       setLiked(false)
-    } else setLiked(true)
+      fetchUnlikeData()
+    }
   }
 
   const handleSearch = (e, search) => {
@@ -56,8 +129,6 @@ function HomePage({ data }) {
   if (!data) {
     return <Spinner />
   }
-
-  // console.log(newInvntory)
 
   return (
     <>
@@ -105,7 +176,8 @@ function HomePage({ data }) {
                     filteredCars={filteredCars}
                     handleCarDetails={handleCarDetails}
                     handleLiked={handleLiked}
-                    liked={liked}
+                    carId={filteredCars._id}
+                    sellerFavorites={sellerFavorites}
                   />
                 ))
             : null}
