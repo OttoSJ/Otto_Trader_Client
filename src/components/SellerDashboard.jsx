@@ -37,7 +37,7 @@ function SellerDashboard({ HTTP }) {
       if (response.status === 200 || 201) {
         setLoaded(true)
       }
-
+      console.log(resData.favorites)
       setSellersInventory(resData.vehicleinventory)
       setSellersName([
         { prefix: resData.prefix },
@@ -114,7 +114,7 @@ function SellerDashboard({ HTTP }) {
                   className="main-picture"
                   src={
                     !car.image
-                      ? 'https://ouikar.com/pub/media/catalog/product/placeholder/default/image_not_available.png'
+                      ? 'https://whetstonefire.org/wp-content/uploads/2020/06/image-not-available.jpg'
                       : car.image
                   }
                   alt=""
