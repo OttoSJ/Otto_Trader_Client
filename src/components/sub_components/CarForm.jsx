@@ -70,6 +70,7 @@ function CarForm({ onChange, carDetails }) {
           className="form-control"
           name="year"
           id="year"
+          placeholder="Year"
           onChange={onChange}
         />
       </div>
@@ -83,12 +84,13 @@ function CarForm({ onChange, carDetails }) {
           className="form-control"
           name="type"
           id="type"
+          placeholder="Body Type"
           onChange={onChange}
         />
       </div>
       <div className="col-6">
         <label htmlFor="listprice" className="form-label">
-          Listprice <span className="required">*</span>
+          List Price <span className="required">*</span>
         </label>
         <input
           defaultValue={carDetails ? `${numberWithCommas(listprice)}` : null}
@@ -96,12 +98,13 @@ function CarForm({ onChange, carDetails }) {
           className="form-control"
           name="listprice"
           id="listprice"
+          placeholder="List Price"
           onChange={onChange}
         />
       </div>
       <div className="col-6">
         <label htmlFor="color" className="form-label">
-          Color <span className="required">*</span>
+          Exterior Color <span className="required">*</span>
         </label>
         <input
           defaultValue={carDetails ? upperCase(color) : null}
@@ -109,6 +112,7 @@ function CarForm({ onChange, carDetails }) {
           className="form-control"
           name="color"
           id="color"
+          placeholder="Exterior Color"
           onChange={onChange}
         />
       </div>
@@ -122,14 +126,14 @@ function CarForm({ onChange, carDetails }) {
           className="form-control"
           name="drivetype"
           id="drivetype"
-          placeholder=""
+          placeholder="2 Wheel, 4 Wheel"
           onChange={onChange}
         />
       </div>
 
       <div className="col-6">
         <label htmlFor="engine" className="form-label">
-          Engine <span className="required">*</span>
+          Engine Type<span className="required">*</span>
         </label>
         <input
           defaultValue={engine ? upperCase(engine) : null}
@@ -137,6 +141,7 @@ function CarForm({ onChange, carDetails }) {
           className="form-control"
           name="engine"
           id="engine"
+          placeholder="4cyl, V6, V8"
           onChange={onChange}
         />
       </div>
@@ -151,6 +156,7 @@ function CarForm({ onChange, carDetails }) {
           className="form-control"
           name="transmission"
           id="transmission"
+          placeholder="Automatic, Manuel"
           onChange={onChange}
         />
       </div>
@@ -165,6 +171,7 @@ function CarForm({ onChange, carDetails }) {
           className="form-control"
           name="mileage"
           id="mileage"
+          placeholder="12984"
           onChange={onChange}
         />
       </div>
@@ -179,6 +186,7 @@ function CarForm({ onChange, carDetails }) {
           className="form-control"
           name="image"
           id="image"
+          placeholder="Copy image address and paste here"
           onChange={onChange}
         />
       </div>
@@ -205,7 +213,6 @@ function CarForm({ onChange, carDetails }) {
           name="listVehicle"
           className="form-select select-box-size"
           onChange={onChange}
-          // defaultValue={listVehicle}
         >
           {listVehicle ? (
             <>
