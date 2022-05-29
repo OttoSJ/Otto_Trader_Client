@@ -167,7 +167,7 @@ function CarDetails({ HTTP }) {
             <hr />
             <div className="container-flex-row mt-4">
               <div>
-                <p>Vehicle Type</p>
+                <p>Body Type</p>
               </div>
               <div>
                 <p>{type ? upperCase(type) : 'N/A'} </p>
