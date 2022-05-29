@@ -37,7 +37,7 @@ function SellerDashboard({ HTTP }) {
       if (response.status === 200 || 201) {
         setLoaded(true)
       }
-      console.log(resData.favorites)
+
       setSellersInventory(resData.vehicleinventory)
       setSellersName([
         { prefix: resData.prefix },
