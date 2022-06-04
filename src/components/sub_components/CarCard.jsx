@@ -12,6 +12,8 @@ function CarCard({
   sellerFavorites,
 }) {
   const userInfo = JSON.parse(localStorage.getItem('user'))
+  const array = [filteredCars]
+  console.log(array)
 
   return (
     <>

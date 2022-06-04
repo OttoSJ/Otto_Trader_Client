@@ -77,7 +77,7 @@ function App() {
                 <EditCarDetails handleFormData={handleFormData} HTTP={HTTP} />
               }
             />
-            <Route path="/sandbox" element={<Sandbox />} />
+            {/* <Route path="/sandbox" element={<Sandbox />} /> */}
             <Route
               path="/edituserdetails/:userId"
               element={<EditUserDetails HTTP={HTTP} />}

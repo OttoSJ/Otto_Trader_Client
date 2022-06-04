@@ -7,6 +7,7 @@ import { upperCase } from '../utilities.js/functions'
 import ModalComponent from './sub_components/Modal'
 import Spinner from './Spinner'
 import { addNewFieldMsg, addNewFieldHeader } from '../utilities.js/variables'
+import FavoriteCars from './sub_components/FavoriteCars'
 
 function SellerDashboard({ HTTP }) {
   const { user } = useSelector((state) => state.auth)
@@ -37,7 +38,7 @@ function SellerDashboard({ HTTP }) {
       if (response.status === 200 || 201) {
         setLoaded(true)
       }
-      console.log(resData.favorites)
+
       setSellersInventory(resData.vehicleinventory)
       setSellersName([
         { prefix: resData.prefix },
@@ -57,7 +58,7 @@ function SellerDashboard({ HTTP }) {
 
   const handleCarDetails = (e, car) => {
     e.preventDefault()
-    console.log(car._id)
+
     navigate(`/cardetails/${car._id}`)
   }
 
@@ -77,12 +78,13 @@ function SellerDashboard({ HTTP }) {
   if (!loaded) {
     return <Spinner />
   }
+  console.log('hi')
 
   return (
     <>
       <div className="sellers-page-container">
         <div className="headings">
-          <h1 className="mb-5">Seller's Dashboard</h1>
+          <h1 className="mb-5">Dashboard</h1>
           <h3 className="mb-3">
             Welcome Back{' '}
             {sellersName ? (
@@ -143,6 +145,9 @@ function SellerDashboard({ HTTP }) {
           )}
         </div>
       </div>
+      <section>
+        <FavoriteCars />
+      </section>
     </>
   )
 }
