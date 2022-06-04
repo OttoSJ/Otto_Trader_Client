@@ -12,6 +12,7 @@ import FavoriteCars from './sub_components/FavoriteCars'
 function SellerDashboard({ HTTP }) {
   const { user } = useSelector((state) => state.auth)
   const [sellersInventory, setSellersInventory] = useState('')
+  const [favoriteCars, setFavoriteCars] = useState('')
   const [sellersName, setSellersName] = useState('')
   const [show, setShow] = useState(false)
   const [modalBodyMessage, setModalBodyMessage] = useState('')
@@ -39,6 +40,7 @@ function SellerDashboard({ HTTP }) {
         setLoaded(true)
       }
 
+      setFavoriteCars(resData.favorites)
       setSellersInventory(resData.vehicleinventory)
       setSellersName([
         { prefix: resData.prefix },
@@ -78,7 +80,6 @@ function SellerDashboard({ HTTP }) {
   if (!loaded) {
     return <Spinner />
   }
-  console.log('hi')
 
   return (
     <>
@@ -146,7 +147,7 @@ function SellerDashboard({ HTTP }) {
         </div>
       </div>
       <section>
-        <FavoriteCars />
+        <FavoriteCars favoriteCars={favoriteCars} />
       </section>
     </>
   )
