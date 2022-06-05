@@ -14,6 +14,7 @@ import {
   reqOptionsAddFav,
   removeFromFav,
   reqOptionsDeleteFav,
+  getCarDetails,
 } from '../utilities.js/functions'
 
 function HomePage({ data, HTTP }) {
@@ -51,8 +52,7 @@ function HomePage({ data, HTTP }) {
     dispatch(getOneCarById(car._id))
 
     const fetchData = async () => {
-      const API_URL = `${HTTP}/api/inventory/cardetails/${car._id}`
-      const response = await fetch(API_URL)
+      const response = await fetch(getCarDetails(HTTP, car._id))
       const resData = await response.json()
 
       await navigate(`/cardetails/${resData._id}`)

@@ -15,7 +15,6 @@ function CarDetails({ HTTP }) {
   const params = useParams()
   const formData = useContext(GlobalContext)
   const dispatch = useDispatch()
-  console.log(formData)
   const { allUsers } = useSelector((state) => state.allUsers)
 
   useEffect(() => {
@@ -106,7 +105,7 @@ function CarDetails({ HTTP }) {
               className="car-details-image mt-3"
               src={
                 !image
-                  ? 'https://ouikar.com/pub/media/catalog/product/placeholder/default/image_not_available.png'
+                  ? 'https://whetstonefire.org/wp-content/uploads/2020/06/image-not-available.jpg'
                   : image
               }
               alt=""

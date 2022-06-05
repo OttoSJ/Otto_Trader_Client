@@ -19,6 +19,7 @@ import {
   confirmedDeletedCarMessage,
 } from '../utilities.js/variables'
 import CarForm from './sub_components/CarForm'
+import { getCarDetails } from '../utilities.js/functions'
 
 function EditCarDetails({ handleFormData, HTTP }) {
   const [carDetails, setCarDetails] = useState('')
@@ -83,7 +84,7 @@ function EditCarDetails({ handleFormData, HTTP }) {
   const navigate = useNavigate()
   const params = useParams()
 
-  const API_URL = `${HTTP}/api/inventory/cardetails/${params.id}`
+  // const API_URL = `${HTTP}/api/inventory/cardetails/${params.id}`
   const userInfo = JSON.parse(localStorage.getItem('user'))
   const token = userInfo.token
 
@@ -103,7 +104,7 @@ function EditCarDetails({ handleFormData, HTTP }) {
       navigate('/login')
     }
     const fetchData = async () => {
-      const response = await fetch(API_URL)
+      const response = await fetch(getCarDetails(HTTP, params.id))
       const resData = await response.json()
 
       setCarDetails(resData)
@@ -113,7 +114,7 @@ function EditCarDetails({ handleFormData, HTTP }) {
     fetchData()
     dispatch(getOneCarById(params.id))
     window.scrollTo(0, 0)
-  }, [params.id, API_URL, dispatch, navigate, user])
+  }, [params.id, getCarDetails, dispatch, navigate, user])
 
   const handleOnSubmit = () => {
     setShow(true)
