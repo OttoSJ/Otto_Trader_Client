@@ -134,10 +134,6 @@ function CarRegistration({ HTTP }) {
 
   const handleClose = () => setShow(false)
 
-  // if (loading) {
-  //   return <Spinner />
-  // }
-
   return (
     <div>
       <div>

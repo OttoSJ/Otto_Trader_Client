@@ -25,7 +25,7 @@ function App() {
   const [HTTP] = useState(URL)
 
   const API_URL_INVENTORY = `${HTTP}/api/inventory/`
-
+  console.log(formData)
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(API_URL_INVENTORY)

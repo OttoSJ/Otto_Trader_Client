@@ -8,20 +8,19 @@ import { getAllUsers } from '../features/users/usersSlice'
 import { getOneCarById } from '../features/carDetails/carDetailsSlice'
 import Spinner from './Spinner'
 import { GlobalContext } from '../utilities.js/GlobalContext'
+import { getCarDetails } from '../utilities.js/functions'
 
 function CarDetails({ HTTP }) {
   const [carDetail, setCarDetail] = useState('')
   const params = useParams()
   const formData = useContext(GlobalContext)
   const dispatch = useDispatch()
-
+  console.log(formData)
   const { allUsers } = useSelector((state) => state.allUsers)
-
-  const API_URL = `${HTTP}/api/inventory/cardetails/${params.id}`
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(API_URL)
+      const response = await fetch(getCarDetails(HTTP, params.id))
       const resData = await response.json()
 
       setCarDetail(resData)
@@ -37,7 +36,7 @@ function CarDetails({ HTTP }) {
     dispatch(getOneCarById(params.id))
     dispatch(getAllUsers())
     window.scrollTo(0, 0)
-  }, [params.id, API_URL, dispatch, formData])
+  }, [params.id, getCarDetails, dispatch, formData])
 
   const {
     color,

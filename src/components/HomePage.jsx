@@ -7,6 +7,14 @@ import CarCard from './sub_components/CarCard'
 import { getOneCarById } from '../features/carDetails/carDetailsSlice'
 import Spinner from './Spinner'
 import { register } from '../features/auth/authSlice'
+import {
+  getUserInventory,
+  reqOptionsTokenOnly,
+  addToFavorites,
+  reqOptionsAddFav,
+  removeFromFav,
+  reqOptionsDeleteFav,
+} from '../utilities.js/functions'
 
 function HomePage({ data, HTTP }) {
   // const [carDataLength, setCarDataLength] = useState([])
@@ -24,20 +32,10 @@ function HomePage({ data, HTTP }) {
 
   useEffect(() => {
     if (userInfo) {
-      const API_URL_GET_USERS_INVENTORY = `${HTTP}/api/users/inventory/${userInfo._id}`
-
-      const requestOptions = {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      }
-
       const fetchData = async () => {
         const response = await fetch(
-          API_URL_GET_USERS_INVENTORY,
-          requestOptions
+          getUserInventory(HTTP, userInfo._id),
+          reqOptionsTokenOnly(token)
         )
         const resData = await response.json()
         const favIds = resData.favorites.map((favorites) => favorites._id)
@@ -51,7 +49,7 @@ function HomePage({ data, HTTP }) {
   const handleCarDetails = (e, car) => {
     e.preventDefault()
     dispatch(getOneCarById(car._id))
-    console.log(car._id)
+
     const fetchData = async () => {
       const API_URL = `${HTTP}/api/inventory/cardetails/${car._id}`
       const response = await fetch(API_URL)
@@ -66,66 +64,40 @@ function HomePage({ data, HTTP }) {
   const handleLiked = (e, car) => {
     e.preventDefault()
 
-    const API_URL_ADD_TO_FAVORITES = `${HTTP}/api/users/update-user-inventory/${userInfo._id}`
-
-    const API_URL_REMOVE_FROM_FAVORITES = `${HTTP}/api/users/remove-car-from-inventory/${userInfo._id}`
-
-    const requestAddFavOptions = {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ favorites: car._id }),
-    }
-
-    const requestDeleteFavOptions = {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ likedCarId: car._id, userId: userInfo._id }),
-    }
-
     const fetchLikeData = async () => {
       const response = await fetch(
-        API_URL_ADD_TO_FAVORITES,
-        requestAddFavOptions
+        addToFavorites(HTTP, userInfo._id),
+        reqOptionsAddFav(token, car._id)
       )
       const resData = await response.json()
-      const favIds = resData.favorites.map((favorites) => favorites._id)
 
-      setSellerFavorites(favIds)
+      setSellerFavorites(resData.favorites)
     }
 
     const fetchUnlikeData = async () => {
       const response = await fetch(
-        API_URL_REMOVE_FROM_FAVORITES,
-        requestDeleteFavOptions
+        removeFromFav(HTTP, userInfo._id),
+        reqOptionsDeleteFav(token, car._id, userInfo._id)
       )
       const resData = await response.json()
-      const favIds = resData.favorites.map((favorites) => favorites._id)
 
-      setSellerFavorites(favIds)
+      setSellerFavorites(resData.favorites)
     }
 
     const checkId = (favoritesCars) => favoritesCars === car._id
 
     if (!sellerFavorites.some(checkId) || sellerFavorites === []) {
-      // setLiked(true)
-
       setTimeout(() => {
         setLiked((currentLike) => (currentLike = true))
       }, 1000)
       fetchLikeData()
+      // setLiked(true)
     } else {
-      // setLiked(false)
-
       setTimeout(() => {
         setLiked((currentLike) => (currentLike = false))
       }, 1000)
       fetchUnlikeData()
+      // setLiked(false)
     }
   }
 

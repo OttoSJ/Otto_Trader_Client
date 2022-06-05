@@ -21,7 +21,7 @@ function SellerDashboard({ HTTP }) {
   const navigate = useNavigate()
   const userInfo = JSON.parse(localStorage.getItem('user'))
   const token = userInfo.token
-
+  console.log(favoriteCars)
   const API_URL_GET_USERS_INVENTORY = `${HTTP}/api/users/inventory/${userInfo._id}`
 
   const requestOptions = {
@@ -39,6 +39,8 @@ function SellerDashboard({ HTTP }) {
       if (response.status === 200 || 201) {
         setLoaded(true)
       }
+
+      console.log(resData.favorites)
 
       setFavoriteCars(resData.favorites)
       setSellersInventory(resData.vehicleinventory)
@@ -147,7 +149,11 @@ function SellerDashboard({ HTTP }) {
         </div>
       </div>
       <section className="container-centered">
-        <FavoriteCars favoriteCars={favoriteCars} />
+        <FavoriteCars
+          key={favoriteCars._id}
+          favoriteCars={favoriteCars}
+          sellerFavorites={favoriteCars}
+        />
       </section>
     </>
   )
