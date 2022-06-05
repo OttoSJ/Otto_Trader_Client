@@ -3,8 +3,8 @@ import CarCard from './CarCard'
 function FavoriteCars({ favoriteCars }) {
   return (
     <>
-      <div className="container-centered mt-5">Hello</div>
-      <div className="container-centered">
+      <h2 className="container-centered mt-5">Favorites</h2>
+      <div className="main-display-container">
         {favoriteCars
           ? favoriteCars.map((filteredCars) => (
               <CarCard key={filteredCars._id} filteredCars={filteredCars} />

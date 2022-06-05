@@ -14,6 +14,8 @@ function CarCard({
   const userInfo = JSON.parse(localStorage.getItem('user'))
   const array = [filteredCars]
   console.log(array)
+  console.log(userInfo)
+  console.log(filteredCars)
 
   return (
     <>
@@ -46,7 +48,7 @@ function CarCard({
           {' '}
           <span className="mx-3 pb-3 minus-margin-top ">
             {' '}
-            <FaEye /> views 23
+            <FaEye /> views 0
           </span>
           {userInfo ? (
             <span className="mx-4 pb-3 minus-margin-top ">

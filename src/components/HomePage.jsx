@@ -49,7 +49,7 @@ function HomePage({ data, HTTP }) {
   const handleCarDetails = (e, car) => {
     e.preventDefault()
     dispatch(getOneCarById(car._id))
-
+    console.log(car._id)
     const fetchData = async () => {
       const API_URL = `${HTTP}/api/inventory/cardetails/${car._id}`
       const response = await fetch(API_URL)
@@ -111,9 +111,15 @@ function HomePage({ data, HTTP }) {
     if (!sellerFavorites.some(checkId) || sellerFavorites === []) {
       setLiked(true)
       fetchLikeData()
+      // setTimeout(() => {
+      //   setLiked(true)
+      // }, 1000)
     } else {
       setLiked(false)
       fetchUnlikeData()
+      // setTimeout(() => {
+      //   setLiked(false)
+      // }, 1000)
     }
   }
 

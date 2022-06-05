@@ -146,7 +146,7 @@ function SellerDashboard({ HTTP }) {
           )}
         </div>
       </div>
-      <section>
+      <section className="container-centered">
         <FavoriteCars favoriteCars={favoriteCars} />
       </section>
     </>
