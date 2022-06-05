@@ -40,10 +40,7 @@ function SellerDashboard({ HTTP }) {
         setLoaded(true)
       }
 
-<<<<<<< HEAD
-=======
       setFavoriteCars(resData.favorites)
->>>>>>> likecomponent
       setSellersInventory(resData.vehicleinventory)
       setSellersName([
         { prefix: resData.prefix },
