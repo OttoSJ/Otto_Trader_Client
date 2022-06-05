@@ -1,10 +1,7 @@
 import { Button, Modal } from 'react-bootstrap'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import {
-  getUserInventory,
-  reqOptionsTokenOnly,
-} from '../../utilities.js/functions'
+import { getUserInventory, reqOptions } from '../../utilities.js/functions'
 
 function ModalComponent({
   HTTP,
@@ -26,7 +23,7 @@ function ModalComponent({
     const fetchData = async () => {
       const response = await fetch(
         getUserInventory(HTTP, userInfo._id),
-        reqOptionsTokenOnly(token)
+        reqOptions(token, 'GET')
       )
 
       const resData = await response.json()
@@ -37,7 +34,7 @@ function ModalComponent({
     if (!token) {
       navigate('/login')
     }
-  }, [getUserInventory, reqOptionsTokenOnly, navigate])
+  }, [getUserInventory, reqOptions, navigate])
 
   return (
     <>

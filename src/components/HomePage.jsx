@@ -9,7 +9,7 @@ import Spinner from './Spinner'
 import { register } from '../features/auth/authSlice'
 import {
   getUserInventory,
-  reqOptionsTokenOnly,
+  reqOptions,
   addToFavorites,
   reqOptionsAddFav,
   removeFromFav,
@@ -36,7 +36,7 @@ function HomePage({ data, HTTP }) {
       const fetchData = async () => {
         const response = await fetch(
           getUserInventory(HTTP, userInfo._id),
-          reqOptionsTokenOnly(token)
+          reqOptions(token, 'GET')
         )
         const resData = await response.json()
         const favIds = resData.favorites.map((favorites) => favorites._id)
@@ -91,13 +91,11 @@ function HomePage({ data, HTTP }) {
         setLiked((currentLike) => (currentLike = true))
       }, 1000)
       fetchLikeData()
-      // setLiked(true)
     } else {
       setTimeout(() => {
         setLiked((currentLike) => (currentLike = false))
       }, 1000)
       fetchUnlikeData()
-      // setLiked(false)
     }
   }
 
