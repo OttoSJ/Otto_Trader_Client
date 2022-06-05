@@ -40,7 +40,9 @@ function HomePage({ data, HTTP }) {
           requestOptions
         )
         const resData = await response.json()
-        setSellerFavorites(resData.favorites)
+        const favIds = resData.favorites.map((favorites) => favorites._id)
+
+        setSellerFavorites(favIds)
       }
       fetchData()
     } else return null
@@ -92,8 +94,9 @@ function HomePage({ data, HTTP }) {
         requestAddFavOptions
       )
       const resData = await response.json()
+      const favIds = resData.favorites.map((favorites) => favorites._id)
 
-      setSellerFavorites(resData.favorites)
+      setSellerFavorites(favIds)
     }
 
     const fetchUnlikeData = async () => {
@@ -102,24 +105,27 @@ function HomePage({ data, HTTP }) {
         requestDeleteFavOptions
       )
       const resData = await response.json()
+      const favIds = resData.favorites.map((favorites) => favorites._id)
 
-      setSellerFavorites(resData.favorites)
+      setSellerFavorites(favIds)
     }
 
     const checkId = (favoritesCars) => favoritesCars === car._id
 
     if (!sellerFavorites.some(checkId) || sellerFavorites === []) {
-      setLiked(true)
+      // setLiked(true)
+
+      setTimeout(() => {
+        setLiked((currentLike) => (currentLike = true))
+      }, 1000)
       fetchLikeData()
-      // setTimeout(() => {
-      //   setLiked(true)
-      // }, 1000)
     } else {
-      setLiked(false)
+      // setLiked(false)
+
+      setTimeout(() => {
+        setLiked((currentLike) => (currentLike = false))
+      }, 1000)
       fetchUnlikeData()
-      // setTimeout(() => {
-      //   setLiked(false)
-      // }, 1000)
     }
   }
 
@@ -136,7 +142,7 @@ function HomePage({ data, HTTP }) {
   if (!data) {
     return <Spinner />
   }
-
+  console.log(sellerFavorites)
   return (
     <>
       <div className="sellers-page-container">

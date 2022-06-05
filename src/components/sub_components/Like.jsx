@@ -5,7 +5,7 @@ function Like({ filteredCars, handleLiked, carId, sellerFavorites }) {
     const checkId = (favoritesCars) => favoritesCars === carId
     // console.log(sellerFavorites.some(checkId))
     console.log(sellerFavorites)
-    console.log(carId)
+    // console.log(carId)
     if (!sellerFavorites) {
       return <FaRegHeart />
     } else
