@@ -4,7 +4,7 @@ const confirmEditUserMessage =
 
 const confirmHeaderMessage = 'Edit Your Profile?'
 
-const confirmedEditMessage = 'Your Profile Has Been Update!'
+const confirmedEditMessage = 'Your Profile Has Been Updated!'
 
 // DELETE USER MESSAGES
 const confirmDeleteUserMessage =

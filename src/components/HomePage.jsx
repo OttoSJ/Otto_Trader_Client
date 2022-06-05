@@ -40,7 +40,9 @@ function HomePage({ data, HTTP }) {
           requestOptions
         )
         const resData = await response.json()
-        setSellerFavorites(resData.favorites)
+        const favIds = resData.favorites.map((favorites) => favorites._id)
+
+        setSellerFavorites(favIds)
       }
       fetchData()
     } else return null
@@ -49,7 +51,7 @@ function HomePage({ data, HTTP }) {
   const handleCarDetails = (e, car) => {
     e.preventDefault()
     dispatch(getOneCarById(car._id))
-
+    console.log(car._id)
     const fetchData = async () => {
       const API_URL = `${HTTP}/api/inventory/cardetails/${car._id}`
       const response = await fetch(API_URL)
@@ -92,8 +94,9 @@ function HomePage({ data, HTTP }) {
         requestAddFavOptions
       )
       const resData = await response.json()
+      const favIds = resData.favorites.map((favorites) => favorites._id)
 
-      setSellerFavorites(resData.favorites)
+      setSellerFavorites(favIds)
     }
 
     const fetchUnlikeData = async () => {
@@ -102,17 +105,26 @@ function HomePage({ data, HTTP }) {
         requestDeleteFavOptions
       )
       const resData = await response.json()
+      const favIds = resData.favorites.map((favorites) => favorites._id)
 
-      setSellerFavorites(resData.favorites)
+      setSellerFavorites(favIds)
     }
 
     const checkId = (favoritesCars) => favoritesCars === car._id
 
     if (!sellerFavorites.some(checkId) || sellerFavorites === []) {
-      setLiked(true)
+      // setLiked(true)
+
+      setTimeout(() => {
+        setLiked((currentLike) => (currentLike = true))
+      }, 1000)
       fetchLikeData()
     } else {
-      setLiked(false)
+      // setLiked(false)
+
+      setTimeout(() => {
+        setLiked((currentLike) => (currentLike = false))
+      }, 1000)
       fetchUnlikeData()
     }
   }
@@ -130,7 +142,7 @@ function HomePage({ data, HTTP }) {
   if (!data) {
     return <Spinner />
   }
-
+  console.log(sellerFavorites)
   return (
     <>
       <div className="sellers-page-container">

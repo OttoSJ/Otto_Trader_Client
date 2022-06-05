@@ -7,10 +7,12 @@ import { upperCase } from '../utilities.js/functions'
 import ModalComponent from './sub_components/Modal'
 import Spinner from './Spinner'
 import { addNewFieldMsg, addNewFieldHeader } from '../utilities.js/variables'
+import FavoriteCars from './sub_components/FavoriteCars'
 
 function SellerDashboard({ HTTP }) {
   const { user } = useSelector((state) => state.auth)
   const [sellersInventory, setSellersInventory] = useState('')
+  const [favoriteCars, setFavoriteCars] = useState('')
   const [sellersName, setSellersName] = useState('')
   const [show, setShow] = useState(false)
   const [modalBodyMessage, setModalBodyMessage] = useState('')
@@ -38,6 +40,10 @@ function SellerDashboard({ HTTP }) {
         setLoaded(true)
       }
 
+<<<<<<< HEAD
+=======
+      setFavoriteCars(resData.favorites)
+>>>>>>> likecomponent
       setSellersInventory(resData.vehicleinventory)
       setSellersName([
         { prefix: resData.prefix },
@@ -57,7 +63,7 @@ function SellerDashboard({ HTTP }) {
 
   const handleCarDetails = (e, car) => {
     e.preventDefault()
-    console.log(car._id)
+
     navigate(`/cardetails/${car._id}`)
   }
 
@@ -82,7 +88,7 @@ function SellerDashboard({ HTTP }) {
     <>
       <div className="sellers-page-container">
         <div className="headings">
-          <h1 className="mb-5">Seller's Dashboard</h1>
+          <h1 className="mb-5">Dashboard</h1>
           <h3 className="mb-3">
             Welcome Back{' '}
             {sellersName ? (
@@ -143,6 +149,9 @@ function SellerDashboard({ HTTP }) {
           )}
         </div>
       </div>
+      <section className="container-centered">
+        <FavoriteCars favoriteCars={favoriteCars} />
+      </section>
     </>
   )
 }
