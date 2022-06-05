@@ -13,9 +13,9 @@ function CarCard({
 }) {
   const userInfo = JSON.parse(localStorage.getItem('user'))
   const array = [filteredCars]
-  console.log(array)
-  console.log(userInfo)
-  console.log(filteredCars)
+  // console.log(array)
+  // console.log(userInfo)
+  // console.log(filteredCars)
 
   return (
     <>
