@@ -23,6 +23,7 @@ function App() {
   const [formData, setFormData] = useState('')
   const dispatch = useDispatch()
   const [HTTP] = useState(URL)
+  const [message] = useState('Hello')
 
   const API_URL_INVENTORY = `${HTTP}/api/inventory/`
   console.log(formData)
@@ -50,7 +51,7 @@ function App() {
     <>
       <Router>
         <Navbar />
-        <GlobalContext.Provider value={formData} HTTP={HTTP}>
+        <GlobalContext.Provider value={formData}>
           <Routes>
             <Route />
             <Route path="/" element={<HomePage data={data} HTTP={HTTP} />} />

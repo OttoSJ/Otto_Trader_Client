@@ -8,6 +8,7 @@ import ModalComponent from './sub_components/Modal'
 import Spinner from './Spinner'
 import { addNewFieldMsg, addNewFieldHeader } from '../utilities.js/variables'
 import FavoriteCars from './sub_components/FavoriteCars'
+import { getUserInventory, reqOptions } from '../utilities.js/functions'
 
 function SellerDashboard({ HTTP }) {
   const { user } = useSelector((state) => state.auth)
@@ -21,20 +22,13 @@ function SellerDashboard({ HTTP }) {
   const navigate = useNavigate()
   const userInfo = JSON.parse(localStorage.getItem('user'))
   const token = userInfo.token
-  console.log(favoriteCars)
-  const API_URL_GET_USERS_INVENTORY = `${HTTP}/api/users/inventory/${userInfo._id}`
-
-  const requestOptions = {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-  }
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(API_URL_GET_USERS_INVENTORY, requestOptions)
+      const response = await fetch(
+        getUserInventory(HTTP, userInfo._id),
+        reqOptions(token, 'GET')
+      )
       const resData = await response.json()
       if (response.status === 200 || 201) {
         setLoaded(true)
@@ -58,7 +52,7 @@ function SellerDashboard({ HTTP }) {
     if (!user) {
       navigate('/login')
     }
-  }, [user, navigate, API_URL_GET_USERS_INVENTORY])
+  }, [user, navigate, getUserInventory])
 
   const handleCarDetails = (e, car) => {
     e.preventDefault()
