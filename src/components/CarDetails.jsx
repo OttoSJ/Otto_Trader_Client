@@ -14,9 +14,10 @@ function CarDetails({ HTTP }) {
   const [carDetail, setCarDetail] = useState('')
   const params = useParams()
   const formData = useContext(GlobalContext)
+  const message = useContext(GlobalContext)
   const dispatch = useDispatch()
   const { allUsers } = useSelector((state) => state.allUsers)
-
+  // console.log(formData, message)
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(getCarDetails(HTTP, params.id))

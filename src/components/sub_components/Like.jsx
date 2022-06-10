@@ -3,7 +3,6 @@ import { FaRegHeart, FaHeart } from 'react-icons/fa'
 function Like({ filteredCars, handleLiked, carId, sellerFavorites }) {
   const getFavorites = () => {
     const checkId = (favoritesCars) => favoritesCars === carId
-
     if (!sellerFavorites) {
       return <FaRegHeart />
     } else
