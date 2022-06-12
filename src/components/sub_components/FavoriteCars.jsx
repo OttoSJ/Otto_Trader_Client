@@ -15,7 +15,7 @@ function FavoriteCars({ favoriteCars }) {
                 key={filteredCars._id}
                 filteredCars={filteredCars}
                 sellerFavorites={sellerFavorites}
-                // handleLiked={handleLiked}
+                sellerDashboard={true}
               />
             ))
           : null}

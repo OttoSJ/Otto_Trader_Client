@@ -10,6 +10,7 @@ function CarCard({
   handleLiked,
   carId,
   sellerFavorites,
+  sellerDashboard,
 }) {
   const userInfo = JSON.parse(localStorage.getItem('user'))
 
@@ -53,6 +54,7 @@ function CarCard({
                 filteredCars={filteredCars}
                 carId={carId}
                 sellerFavorites={sellerFavorites}
+                sellerDashboard={sellerDashboard}
               />
             </span>
           ) : null}

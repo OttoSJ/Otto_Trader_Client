@@ -1,6 +1,12 @@
 import { FaRegHeart, FaHeart } from 'react-icons/fa'
 
-function Like({ filteredCars, handleLiked, carId, sellerFavorites }) {
+function Like({
+  filteredCars,
+  handleLiked,
+  carId,
+  sellerFavorites,
+  sellerDashboard,
+}) {
   const getFavorites = () => {
     const checkId = (favoritesCars) => favoritesCars === carId
     if (!sellerFavorites) {
@@ -9,7 +15,7 @@ function Like({ filteredCars, handleLiked, carId, sellerFavorites }) {
       return (
         <i onClick={(e) => handleLiked(e, filteredCars)} className="cursor">
           {' '}
-          {!sellerFavorites.some(checkId) ? (
+          {!sellerFavorites.some(checkId) && !sellerDashboard ? (
             <FaRegHeart />
           ) : (
             <FaHeart className="liked" />
