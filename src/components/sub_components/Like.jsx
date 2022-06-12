@@ -22,7 +22,7 @@ function Like({ filteredCars, carId, sellerDashboard }) {
       const fetchData = async () => {
         const response = await fetch(
           getUserInventory(HTTP, userInfo._id),
-          reqOptionsTokenOnly(token)
+          reqOptionsTokenOnly(token, 'GET')
         )
         const resData = await response.json()
 
@@ -73,7 +73,6 @@ function Like({ filteredCars, carId, sellerDashboard }) {
 
   const getFavorites = () => {
     const checkId = (favoritesCars) => favoritesCars === carId
-
     if (!sellerFavorites) {
       return <FaRegHeart />
     } else

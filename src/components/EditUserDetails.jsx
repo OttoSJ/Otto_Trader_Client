@@ -15,6 +15,15 @@ import {
   confirmedEditMessage,
 } from '../utilities.js/variables'
 
+import {
+  updateUserInfo,
+  reqOptionsUpdateUser,
+  reqOptionsTokenOnly,
+  getUsersInfo,
+  deleteUser,
+  deleteUserInventory,
+} from '../utilities.js/functions'
+
 function EditUserDetails({ HTTP }) {
   const [userInformation, setUserInformation] = useState('')
   const [formData, setFormData] = useState({})
@@ -27,52 +36,14 @@ function EditUserDetails({ HTTP }) {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const API_URL_UPDATE_USER_INFO = `${HTTP}/api/users/update-user-info/${params.userId}`
-  const API_URL_DELETE_USER_INFO = `${HTTP}/api/users/delete-user/${params.userId}`
-  const API_URL_GET_USER_INFO = `${HTTP}/api/users/user-info/${params.userId}`
-  const API_URL_DELETE_USER_INVENTORY_INFO = `${HTTP}/api/users/delete-users-inventory/${params.userId}`
-
   const userInfo = JSON.parse(localStorage.getItem('user'))
   const token = userInfo.token
-
-  const requestOptions = {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-  }
-
-  const requestDeleteUserOptions = {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-  }
-
-  const requestDeleteInventoryOptions = {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-  }
-
-  const requestUpdateOptions = {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify(formData),
-  }
 
   const onSubmit = () => {
     const fetchData = async () => {
       const response = await fetch(
-        API_URL_UPDATE_USER_INFO,
-        requestUpdateOptions
+        updateUserInfo(HTTP, params.userId),
+        reqOptionsUpdateUser(token, formData)
       )
     }
 
@@ -94,12 +65,12 @@ function EditUserDetails({ HTTP }) {
   const handleDelete = () => {
     const fetchData = async () => {
       const resDeleteInventory = await fetch(
-        API_URL_DELETE_USER_INVENTORY_INFO,
-        requestDeleteInventoryOptions
+        deleteUserInventory(params.userId),
+        reqOptionsTokenOnly(token, 'DELETE')
       )
       const resDeleteUser = await fetch(
-        API_URL_DELETE_USER_INFO,
-        requestDeleteUserOptions
+        deleteUser(params.userId),
+        reqOptionsTokenOnly(token, 'DELETE')
       )
     }
 
@@ -134,14 +105,17 @@ function EditUserDetails({ HTTP }) {
       navigate('/')
     }
     const fetchData = async () => {
-      const response = await fetch(API_URL_GET_USER_INFO, requestOptions)
+      const response = await fetch(
+        getUsersInfo(params.userId),
+        reqOptionsTokenOnly(token, 'GET')
+      )
       const resData = await response.json()
       setUserInformation(resData)
       setFormData(resData)
     }
     fetchData()
     setCancel(false)
-  }, [API_URL_GET_USER_INFO, navigate, setCancel])
+  }, [getUsersInfo, navigate, setCancel])
 
   return (
     <>

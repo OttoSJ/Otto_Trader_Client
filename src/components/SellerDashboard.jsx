@@ -31,7 +31,7 @@ function SellerDashboard({ HTTP }) {
     const fetchData = async () => {
       const response = await fetch(
         getUserInventory(HTTP, userInfo._id),
-        reqOptionsTokenOnly(token)
+        reqOptionsTokenOnly(token, 'GET')
       )
       const resData = await response.json()
       if (response.status === 200 || 201) {

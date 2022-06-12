@@ -26,7 +26,7 @@ function ModalComponent({
     const fetchData = async () => {
       const response = await fetch(
         getUserInventory(HTTP, userInfo._id),
-        reqOptionsTokenOnly(token)
+        reqOptionsTokenOnly(token, 'GET')
       )
 
       const resData = await response.json()
