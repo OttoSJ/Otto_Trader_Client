@@ -5,13 +5,7 @@ import Like from '../../components/sub_components/Like'
 import { FaEye } from 'react-icons/fa'
 import { register } from '../../features/auth/authSlice'
 
-function CarCard({
-  filteredCars,
-  handleCarDetails,
-  handleLiked,
-  carId,
-  sellerDashboard,
-}) {
+function CarCard({ filteredCars, handleCarDetails, carId, sellerDashboard }) {
   const userInfo = JSON.parse(localStorage.getItem('user'))
 
   return (
@@ -50,7 +44,6 @@ function CarCard({
           {userInfo ? (
             <span className="mx-4 pb-3 minus-margin-top ">
               <Like
-                handleLiked={handleLiked}
                 filteredCars={filteredCars}
                 carId={carId}
                 sellerDashboard={sellerDashboard}

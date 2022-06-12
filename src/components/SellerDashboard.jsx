@@ -28,7 +28,7 @@ function SellerDashboard({ HTTP }) {
   const token = userInfo.token
 
   useEffect(() => {
-    console.log(favoriteCars)
+    setReRender(false)
     const fetchData = async () => {
       const response = await fetch(
         getUserInventory(HTTP, userInfo._id),
@@ -56,6 +56,11 @@ function SellerDashboard({ HTTP }) {
       navigate('/login')
     }
   }, [user, reRender, navigate, getUserInventory])
+
+  const handleRender = () => {
+    console.log('clicked in sellerdashboard!')
+    setReRender(true)
+  }
 
   const handleCarDetails = (e, car) => {
     e.preventDefault()
@@ -149,7 +154,7 @@ function SellerDashboard({ HTTP }) {
         <FavoriteCars
           key={favoriteCars._id}
           favoriteCars={favoriteCars}
-          setReRender={reRender}
+          handleRender={handleRender}
         />
       </section>
     </>

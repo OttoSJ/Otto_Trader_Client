@@ -61,44 +61,6 @@ function HomePage({ data, HTTP }) {
     fetchData()
   }
 
-  const handleLiked = (e, car) => {
-    e.preventDefault()
-
-    const fetchLikeData = async () => {
-      const response = await fetch(
-        addToFavorites(HTTP, userInfo._id),
-        reqOptionsAddFav(token, car._id)
-      )
-      const resData = await response.json()
-
-      setSellerFavorites(resData.favorites)
-    }
-
-    const fetchUnlikeData = async () => {
-      const response = await fetch(
-        removeFromFav(HTTP, userInfo._id),
-        reqOptionsDeleteFav(token, car._id, userInfo._id)
-      )
-      const resData = await response.json()
-
-      setSellerFavorites(resData.favorites)
-    }
-
-    const checkId = (favoritesCars) => favoritesCars === car._id
-
-    if (!sellerFavorites.some(checkId) || sellerFavorites === []) {
-      setTimeout(() => {
-        setLiked((currentLike) => (currentLike = true))
-      }, 1000)
-      fetchLikeData()
-    } else {
-      setTimeout(() => {
-        setLiked((currentLike) => (currentLike = false))
-      }, 1000)
-      fetchUnlikeData()
-    }
-  }
-
   const handleSearch = (e, search) => {
     e.preventDefault()
     setQuery(search)
@@ -158,7 +120,6 @@ function HomePage({ data, HTTP }) {
                     key={filteredCars._id}
                     filteredCars={filteredCars}
                     handleCarDetails={handleCarDetails}
-                    handleLiked={handleLiked}
                     carId={filteredCars._id}
                     sellerFavorites={sellerFavorites}
                   />

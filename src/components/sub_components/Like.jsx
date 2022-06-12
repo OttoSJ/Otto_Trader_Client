@@ -36,7 +36,6 @@ function Like({ filteredCars, carId, sellerDashboard }) {
 
   const handleLiked = (e, car) => {
     e.preventDefault()
-
     const fetchLikeData = async () => {
       const response = await fetch(
         addToFavorites(HTTP, userInfo._id),
