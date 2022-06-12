@@ -9,9 +9,9 @@ export function upperCase(word) {
 
 // PRODUCTION VS DEPLOYMENT VARIABLES
 
-// export const URL = 'https://otto-trader-api.herokuapp.com'
+export const URL = 'https://otto-trader-api.herokuapp.com'
 
-export const URL = 'http://localhost:8030'
+// export const URL = 'http://localhost:8030'
 export const HTTP = URL
 
 // API FUNCTIONS ///////////////////////////////

@@ -75,6 +75,13 @@ a {
   align-items: center;
 }
 
+.container-flex-row-heart-view {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .comments-container {
   width: 60%;
   height: 70%;
@@ -215,7 +222,6 @@ Link {
   }
 
   .search-bar {
-    width: 380%;
     margin-bottom: 1rem;
     margin-top: 0;
   }
@@ -229,7 +235,10 @@ Link {
   }
 }
 
-@media (min-width: 850px) and (max-width: 1200px) {
+@media (max-width: 600px) {
+}
+
+@media (min-width: 850px) and (max-width: 2000px) {
   .container-flex-row {
     width: 50rem;
   }
