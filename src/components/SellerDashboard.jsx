@@ -22,6 +22,7 @@ function SellerDashboard({ HTTP }) {
   const [modalBodyMessage, setModalBodyMessage] = useState('')
   const [modalHeaderMessage, setModalHeaderMessage] = useState('')
   const [loaded, setLoaded] = useState(false)
+  const [reRender, setReRender] = useState(false)
   const navigate = useNavigate()
   const userInfo = JSON.parse(localStorage.getItem('user'))
   const token = userInfo.token
@@ -54,7 +55,7 @@ function SellerDashboard({ HTTP }) {
     if (!user) {
       navigate('/login')
     }
-  }, [user, navigate, getUserInventory])
+  }, [user, reRender, navigate, getUserInventory])
 
   const handleCarDetails = (e, car) => {
     e.preventDefault()
@@ -145,7 +146,11 @@ function SellerDashboard({ HTTP }) {
         </div>
       </div>
       <section className="container-centered">
-        <FavoriteCars key={favoriteCars._id} favoriteCars={favoriteCars} />
+        <FavoriteCars
+          key={favoriteCars._id}
+          favoriteCars={favoriteCars}
+          setReRender={reRender}
+        />
       </section>
     </>
   )

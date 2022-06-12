@@ -1,6 +1,6 @@
 import CarCard from './CarCard'
 
-function FavoriteCars({ favoriteCars }) {
+function FavoriteCars({ favoriteCars, setReRender }) {
   return (
     <>
       <h2 className="container-centered mt-5">Favorites</h2>

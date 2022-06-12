@@ -3,6 +3,7 @@ import { upperCase, numberWithCommas } from '../../utilities.js/functions'
 import { Link } from 'react-router-dom'
 import Like from '../../components/sub_components/Like'
 import { FaEye } from 'react-icons/fa'
+import { register } from '../../features/auth/authSlice'
 
 function CarCard({
   filteredCars,
@@ -10,7 +11,6 @@ function CarCard({
   handleLiked,
   carId,
   sellerDashboard,
-  // sellerFavorites,
 }) {
   const userInfo = JSON.parse(localStorage.getItem('user'))
 
@@ -53,7 +53,6 @@ function CarCard({
                 handleLiked={handleLiked}
                 filteredCars={filteredCars}
                 carId={carId}
-                // sellerFavorites={sellerFavorites}
                 sellerDashboard={sellerDashboard}
               />
             </span>

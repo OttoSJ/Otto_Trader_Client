@@ -112,7 +112,7 @@ function HomePage({ data, HTTP }) {
   if (!data) {
     return <Spinner />
   }
-  console.log(sellerFavorites)
+
   return (
     <>
       <div className="sellers-page-container">

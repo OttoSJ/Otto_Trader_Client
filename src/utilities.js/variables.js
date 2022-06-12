@@ -1,3 +1,5 @@
+// MESSAGE VARIABLES ///////////////////////////////////
+
 // EDIT USER MESSAGES
 const confirmEditUserMessage =
   'Are you sure you want to make these changes at this time?'
