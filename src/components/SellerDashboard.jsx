@@ -26,9 +26,8 @@ function SellerDashboard({ HTTP }) {
   const userInfo = JSON.parse(localStorage.getItem('user'))
   const token = userInfo.token
 
-  console.log(favoriteCars)
-
   useEffect(() => {
+    console.log(favoriteCars)
     const fetchData = async () => {
       const response = await fetch(
         getUserInventory(HTTP, userInfo._id),
@@ -38,8 +37,6 @@ function SellerDashboard({ HTTP }) {
       if (response.status === 200 || 201) {
         setLoaded(true)
       }
-
-      console.log(resData.favorites)
 
       setFavoriteCars(resData.favorites)
       setSellersInventory(resData.vehicleinventory)
@@ -148,11 +145,7 @@ function SellerDashboard({ HTTP }) {
         </div>
       </div>
       <section className="container-centered">
-        <FavoriteCars
-          key={favoriteCars._id}
-          favoriteCars={favoriteCars}
-          sellerFavorites={favoriteCars}
-        />
+        <FavoriteCars key={favoriteCars._id} favoriteCars={favoriteCars} />
       </section>
     </>
   )

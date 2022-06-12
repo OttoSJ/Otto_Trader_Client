@@ -10,13 +10,12 @@ import {
   URL,
 } from '../../utilities.js/functions'
 
-function Like({ filteredCars, carId }) {
+function Like({ filteredCars, carId, sellerDashboard }) {
   const [sellerFavorites, setSellerFavorites] = useState('')
   const [HTTP] = useState(URL)
+  const [liked, setLiked] = useState(false)
   const userInfo = JSON.parse(localStorage.getItem('user'))
   const token = userInfo ? userInfo.token : null
-  const [liked, setLiked] = useState(false)
-  console.log(sellerFavorites)
 
   useEffect(() => {
     if (userInfo) {
@@ -26,6 +25,7 @@ function Like({ filteredCars, carId }) {
           reqOptionsTokenOnly(token)
         )
         const resData = await response.json()
+
         const favIds = resData.favorites.map((favorites) => favorites._id)
 
         setSellerFavorites(favIds)
@@ -36,7 +36,6 @@ function Like({ filteredCars, carId }) {
 
   const handleLiked = (e, car) => {
     e.preventDefault()
-    console.log('clicked')
 
     const fetchLikeData = async () => {
       const response = await fetch(
@@ -81,7 +80,7 @@ function Like({ filteredCars, carId }) {
       return (
         <i onClick={(e) => handleLiked(e, filteredCars)} className="cursor">
           {' '}
-          {!sellerFavorites.some(checkId) ? (
+          {!sellerFavorites.some(checkId) && !sellerDashboard ? (
             <FaRegHeart />
           ) : (
             <FaHeart className="liked" />
