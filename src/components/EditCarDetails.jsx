@@ -19,6 +19,11 @@ import {
   confirmedDeletedCarMessage,
 } from '../utilities.js/variables'
 import CarForm from './sub_components/CarForm'
+import {
+  getCarDetails,
+  delVehicleFromInven,
+  reqOptionsDelFrmInven,
+} from '../utilities.js/functions'
 
 function EditCarDetails({ handleFormData, HTTP }) {
   const [carDetails, setCarDetails] = useState('')
@@ -83,27 +88,15 @@ function EditCarDetails({ handleFormData, HTTP }) {
   const navigate = useNavigate()
   const params = useParams()
 
-  const API_URL = `${HTTP}/api/inventory/cardetails/${params.id}`
   const userInfo = JSON.parse(localStorage.getItem('user'))
   const token = userInfo.token
-
-  const API_URL_UPDATE_CAR_INVENTORY = `${HTTP}/api/users/remove-car-from-inventory/${params.id}`
-
-  const requestUpdateOptions = {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify({ userId: user._id, carId: params.id }),
-  }
 
   useEffect(() => {
     if (!user) {
       navigate('/login')
     }
     const fetchData = async () => {
-      const response = await fetch(API_URL)
+      const response = await fetch(getCarDetails(HTTP, params.id))
       const resData = await response.json()
 
       setCarDetails(resData)
@@ -113,7 +106,7 @@ function EditCarDetails({ handleFormData, HTTP }) {
     fetchData()
     dispatch(getOneCarById(params.id))
     window.scrollTo(0, 0)
-  }, [params.id, API_URL, dispatch, navigate, user])
+  }, [params.id, getCarDetails, dispatch, navigate, user, HTTP])
 
   const handleOnSubmit = () => {
     setShow(true)
@@ -148,8 +141,8 @@ function EditCarDetails({ handleFormData, HTTP }) {
   const handleDelete = (e) => {
     const fetchData = async () => {
       const response = await fetch(
-        API_URL_UPDATE_CAR_INVENTORY,
-        requestUpdateOptions
+        delVehicleFromInven(HTTP, params.id),
+        reqOptionsDelFrmInven(token, userInfo._id, params.id)
       )
       const resData = await response.json()
       console.log(resData)

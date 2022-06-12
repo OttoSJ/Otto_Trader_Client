@@ -9,11 +9,12 @@ import Spinner from './Spinner'
 import { register } from '../features/auth/authSlice'
 import {
   getUserInventory,
-  reqOptionsTokenOnly,
+  reqOptions,
   addToFavorites,
   reqOptionsAddFav,
   removeFromFav,
   reqOptionsDeleteFav,
+  getCarDetails,
 } from '../utilities.js/functions'
 
 function HomePage({ data, HTTP }) {
@@ -35,7 +36,7 @@ function HomePage({ data, HTTP }) {
       const fetchData = async () => {
         const response = await fetch(
           getUserInventory(HTTP, userInfo._id),
-          reqOptionsTokenOnly(token)
+          reqOptions(token, 'GET')
         )
         const resData = await response.json()
         const favIds = resData.favorites.map((favorites) => favorites._id)
@@ -51,8 +52,7 @@ function HomePage({ data, HTTP }) {
     dispatch(getOneCarById(car._id))
 
     const fetchData = async () => {
-      const API_URL = `${HTTP}/api/inventory/cardetails/${car._id}`
-      const response = await fetch(API_URL)
+      const response = await fetch(getCarDetails(HTTP, car._id))
       const resData = await response.json()
 
       await navigate(`/cardetails/${resData._id}`)
@@ -91,13 +91,11 @@ function HomePage({ data, HTTP }) {
         setLiked((currentLike) => (currentLike = true))
       }, 1000)
       fetchLikeData()
-      // setLiked(true)
     } else {
       setTimeout(() => {
         setLiked((currentLike) => (currentLike = false))
       }, 1000)
       fetchUnlikeData()
-      // setLiked(false)
     }
   }
 
