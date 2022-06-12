@@ -40,7 +40,7 @@ function CarCard({
             </p>
           </Link>
         </main>
-        <div className="container-flex-row">
+        <div className="container-flex-row-heart-view">
           {' '}
           <span className="mx-3 pb-3 minus-margin-top ">
             {' '}
