@@ -1,44 +1,40 @@
+# Otto Trader App
+
+NOTE: Otto Trader is not real website[^1]
+
+### Why Otto Trader?
+
+Otto Trader was built with the intention of furthering my knowledge and understanding of how to use and interact with technologies such as React, Axios, Fetch, React-Dom, and Redux to name a few.
+
+### What is Otto Trader?
+
+Otto Trader is an app that connects people who are intending to sell the vehicles to potential buyers. Otto Trader allows users to browse the vehicles on the site and once they find a vehicle they are interested in they can then contact the seller and make arrangements to inspect and or but said vehicle. Users also have the option to create an account if they would like to save a vehicle to a fovorites list. Sellers must register with the site in order to post their vehilces. Once a user is registered, they can then register a vehilce with the site which includes providing details of the vehilce and an image. The seller has control over what vehilces in their inventory they want to post to the main page at any given time.
+
+### How to run Otto Trader on your local machine.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
-## Available Scripts
+### `npm install`
 
-In the project directory, you can run:
+After forking to your repository and cloning to your local machine, you need to run npm install in order to download node modules which will have all the dependencies you need in order to run the app locally.
 
 ### `npm start`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-### `npm test`
+##### You're good to go!!!
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Technologies Used
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- React
+- Redux / Toolkit
+- React Bootstrap
+- React Icons
+- React Router Dom
+- Toastify
+- Axios
+- Netlify
+- Otto Trader API (heroku) [Otto Trader API](https://github.com/OttoSJ/Otto_Trader_Server)
